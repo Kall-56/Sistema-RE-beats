@@ -1,7 +1,39 @@
-.results {
+.main-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.left-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  width: 70vw;
+}
+
+.right-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  width: 30vw;
+}
+
+.song-results {
   display: grid;
   column-gap: 14px;
   row-gap: 14px;
   justify-content: space-around;
   grid-template-columns: repeat(auto-fill,minmax(400px,400px));
+}
+
+.playlist-results {
+  display: grid;
+  column-gap: 14px;
+  row-gap: 14px;
+  justify-content: space-around;
+  grid-template-columns: repeat(auto-fill,minmax(400px,400px));
+}
+
+.left-container hr {
+  width: inherit;
 }

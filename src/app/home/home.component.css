@@ -1,5 +1,7 @@
 header {
-  display: block;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
   box-sizing: border-box;
   width: 100%;
   padding: 1%;
@@ -9,4 +11,8 @@ header {
 header a {
   text-decoration: none;
   color: #fff;
+}
+
+.perfil {
+  right: 1px;
 }

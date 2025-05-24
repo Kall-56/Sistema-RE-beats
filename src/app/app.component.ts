@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
       <router-outlet></router-outlet>
     </main>
   `,
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit{
   private appRoute: Router = inject(Router);
@@ -19,9 +19,9 @@ export class AppComponent implements OnInit{
   constructor() {}
 
   ngOnInit() {
-    setTimeout(() => {
-      this.appRoute.navigate(['/home']);
+    /*setTimeout(() => {
+      this.appRoute.navigate(['/']);
     },
-      1000);
+      1000);*/
   }
 }
