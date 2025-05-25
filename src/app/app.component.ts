@@ -5,13 +5,13 @@ import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, ],
   template: `
     <main>
       <router-outlet></router-outlet>
     </main>
   `,
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent implements OnInit{
   private appRoute: Router = inject(Router);
@@ -20,7 +20,7 @@ export class AppComponent implements OnInit{
 
   ngOnInit() {
     /*setTimeout(() => {
-      this.appRoute.navigate(['/']);
+      this.appRoute.navigate(['/home']);
     },
       1000);*/
   }

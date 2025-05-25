@@ -7,21 +7,17 @@
                     <div class="rectangle-2"></div>
                     <div class="content">
                         <div class="copy">
-                            <div class="inicio-de-sesion">Inicio de Sesión</div>
+                            <div class="inicio-de-sesion">Registro</div>
                             <p class="ingrese-su-nombre-de">Ingrese su nombre de Usuario y Contraseña</p>
                         </div>
                         <form class="input-and-button">
                             <input type="text" placeholder="Usuario1234" class="label" #nombre>
                             <input type="password" placeholder="Contraseña1234#$%&amp;*" class="label" #clave>
-                            <button class="button" type="button" (click)="logIn(nombre.value,clave.value)"><div class="text-wrapper">Continuar</div></button>
+                            <input type="password" placeholder="Contraseña1234#$%&amp;*" class="label" #clave2>
+                            <button class="button" type="button" (click)="register(nombre.value,clave.value,clave2.value)">
+                                <div class="text-wrapper">Registrate</div></button>
+                            <button class="div-wrapper" type="button" [routerLink]="['/']"><div class="text-wrapper-3">Cancelar</div></button>
                         </form>
-                        <div class="divider">
-                            <div class="rectangle-3"></div>
-                            <div class="text-wrapper-2">Registrate</div>
-                            <div class="rectangle-3"></div>
-                        </div>
-                        <a [routerLink]="['/registration']"><button class="div-wrapper" type="button" ><div class="text-wrapper-3">Crear Cuenta</div></button>
-                        </a>
                     </div>
                 </div>
                 <div class="re">Re:BEATS</div>

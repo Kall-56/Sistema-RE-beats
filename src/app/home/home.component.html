@@ -1,14 +1,49 @@
-<header>
-  <a routerLink="/home">
-    <h1>Re:BEATS</h1>
-  </a>
-  <a>
-    <img src="" alt="Crear playlist" />
-  </a>
-  <a class="perfil">
-    <img src="" alt="Perfil IMG" />
-  </a>
-</header>
-<section>
-  <router-outlet></router-outlet>
+<section class="main container">
+    <!-- TopBar -->
+    <div class="topbar">
+        <div class="container-arrows">
+            <div class="container-arrow-left">
+                <i class="fa-solid fa-chevron-left"></i>
+            </div>
+            <div class="container-arrow-right">
+                <i class="fa-solid fa-chevron-right"></i>
+            </div>
+        </div>
+        <div class="buttons-user">
+            <a href="#" class="btn-register">Registrarte</a>
+            <a href="#" class="btn-login btn-full">Iniciar sesión</a>
+        </div>
+    </div>
+    <!-- SideBar -->
+    <nav class="navbar">
+        <h1 class="logo">RE:BEATS</h1>
+        <ul class="nav-main">
+            <li>
+                <a [routerLink]="['/home']">
+                <i class="fa-solid fa-house"></i>Inicio</a>
+            </li>
+            <li>
+                <a [routerLink]="['/home']">
+                <i class="fa-solid fa-magnifying-glass"></i>Buscar</a>
+            </li>
+            <li>
+                <a [routerLink]="['/home']">
+                <i class="fa-solid fa-bookmark"></i>Tus playlists</a>
+            </li>
+        </ul>
+        <div class="extra-options">
+            <button class="btn-create-list">
+                <a [routerLink]="['/home']">
+                <i class="fa-solid fa-plus"></i>Crear playlist</a>
+            </button>
+        </div>
+        <button class="btn-language">
+            <i class="fa-solid fa-globe"></i>
+            Español de España
+        </button>
+    </nav>
+    <!-- Contenido Principal -->
+    <section class="main-content">
+        <router-outlet></router-outlet>
+    </section>
 </section>
