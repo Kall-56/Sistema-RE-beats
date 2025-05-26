@@ -1,0 +1,134 @@
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.right-flex {
+    display: flex;
+    flex-direction: column;
+    width: 80vw;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* ********************************** */
+/*               TOPBAR               */
+/* ********************************** */
+.topbar {
+  background-color: #101010;
+  width: auto;
+  height: fit-content;
+}
+
+.perfil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1%;
+  gap: 1rem;
+  right: 0;
+}
+
+.perfil div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #5856d6;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+}
+
+.perfil:hover i {
+  text-decoration-line: underline;
+}
+
+.perfil:hover div{
+  background-color: #7c7cfc;
+  cursor: pointer;
+}
+
+.perfil:hover div i {
+  text-decoration-line: none;
+}
+
+.container-arrows {
+    display: flex;
+  justify-content: space-between;
+    gap: 3rem;
+}
+
+.container-arrow-left {
+    background-color: #0a0a0a;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  margin: 1%;
+}
+
+.container-arrow-left:hover {
+    background-color: #1a1a1a;
+    cursor: pointer;
+}
+
+i {
+  color: #fff;
+  font-size: 1.4rem;
+  justify-content: center;
+  align-items: center;
+}
+/* ********************************** */
+/*               SIDEBAR              */
+/* ********************************** */
+.navbar {
+    background-color: #000;
+    color: #b3b3b3;
+    width: 20vw;
+    height: 100vh;
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  margin-top: 10%;
+  margin-bottom: 15%;
+  font-size: 2.8rem;
+  color: #fff;
+}
+
+.nav-main {
+    padding: 0 2.4rem;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.nav-main li {
+    list-style: none;
+}
+
+.nav-main li a span{
+
+    font-size: 1.6rem;
+    color: #b3b3b3;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4rem;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    transition: all 0.3s ease;
+}
+
+.nav-main li a span:hover {
+    color: #fff;
+}
+
+.nav-main li a i {
+    font-size: 2rem;
+}

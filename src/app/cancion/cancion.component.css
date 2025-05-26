@@ -1,0 +1,36 @@
+.outer-card {
+  background-color: #181818;
+  border-radius: 0.5rem;
+  padding: 1.6rem;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.outer-card:hover {
+  background-color: #282828;
+}
+
+.card-img .img {
+  width: 10rem;
+  border-radius: 0.5rem;
+  background: linear-gradient(160deg, #babaff 0%, #6c63ff 100%);
+  height: 10rem;
+}
+
+.card-img {
+  overflow: hidden;
+}
+
+.card h2 {
+  margin-top: 1rem;
+  margin-bottom: 0;
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.song-results2 .outer-card .card span {
+  display: none !important;
+}

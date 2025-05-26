@@ -1,16 +1,27 @@
-import { Component } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterModule],
+  imports: [CommonModule, RouterModule, ],
   template: `
     <main>
       <router-outlet></router-outlet>
     </main>
   `,
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
+  private appRoute: Router = inject(Router);
 
+  constructor() {}
+
+  ngOnInit() {
+    /*setTimeout(() => {
+      this.appRoute.navigate(['/home']);
+    },
+      1000);*/
+  }
 }

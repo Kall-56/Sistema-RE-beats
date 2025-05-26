@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #1E1E1E;
+  overflow-x: hidden;
+}
+
+h1, h2, span {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter-SemiBold", Helvetica, serif;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+}
