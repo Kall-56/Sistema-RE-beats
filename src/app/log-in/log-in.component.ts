@@ -21,14 +21,18 @@ export class LogInComponent {
             console.error('Introduzca los datos');
         }
         else {
-            /*this.globalService.userConnected = this.logInService.getUserConfirmation(nombre,clave);
-            if (this.globalService.userConnected === undefined) {
-                console.error('No se encontro al usuario');
-            }
-            else {
-                this.globalService.AppRouter.navigate(['/home']);
-            }*/
-          this.globalService.AppRouter.navigate(['/home']);
+            this.logInService.getUserConfirmation(nombre,clave).subscribe(
+              {
+                next: response => {
+                  console.log(response);
+                  setTimeout(() => {
+                    this.globalService.userConnected = response;
+                    this.globalService.AppRouter.navigate(['/home']);
+                  },1000);
+                },
+                error: error => console.error('Error:', error)
+              }
+            );
         }
     }
 }

@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import {Component, Input, ViewEncapsulation} from '@angular/core';
+import {Cancion} from './cancion.interface';
 
 @Component({
   selector: 'app-cancion',
-  imports: [],
+  imports: [
+  ],
   templateUrl: './cancion.component.html',
-  styleUrl: './cancion.component.css'
+  styleUrl: './cancion.component.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class CancionComponent {
-
+  @Input() cancion!: Cancion;
 }

@@ -15,15 +15,13 @@ export class LogInService {
   constructor() {
   }
 
-  getUserConfirmation(nombre: string, clave: string): Observable<Usuario> | undefined {
-    /*
-    const url = `${this.backUrl}/`;
+  getUserConfirmation(nombre: string, clave: string): Observable<Usuario> {
+    const url = `${this.backUrl}/Login`;
     const params = new HttpParams()
       .set('nombre', nombre)
       .set('clave', clave);
 
-    return this.http.get<Usuario>(url,{params});*/
-    return undefined;
+    return this.http.get<Usuario>(url,{params});
   }
 
   createUser(nombre: string, clave: string): Observable<any>{

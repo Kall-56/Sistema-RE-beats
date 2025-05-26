@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Playlist} from './playlist.interface';
 
 @Component({
   selector: 'app-playlist',
@@ -7,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './playlist.component.css'
 })
 export class PlaylistComponent {
-
+  @Input() playlist!: Playlist;
 }

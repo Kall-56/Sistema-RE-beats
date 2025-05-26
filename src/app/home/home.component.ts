@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
+import {Usuario} from '../log-in/Usuario.interface';
+import {GlobalService} from '../global.service';
 
 @Component({
   selector: 'app-home',
@@ -10,6 +12,14 @@ import {RouterLink, RouterOutlet} from '@angular/router';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit{
+  private globalService: GlobalService = inject(GlobalService);
+  User!: Usuario;
 
+  ngOnInit() {
+    const unknowUser = this.globalService.userConnected;
+    if (unknowUser !== null) {
+      this.User = unknowUser;
+    }
+  }
 }
