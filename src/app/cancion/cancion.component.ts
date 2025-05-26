@@ -15,6 +15,6 @@ export class CancionComponent {
   constructor(private router: Router) {}
 
   verDetalleCancion(cancion: Cancion) {
-    this.router.navigate(['/cancion', cancion.titulo]);
+    this.router.navigate(['/home/cancion', cancion.titulo]);
   }
 }
