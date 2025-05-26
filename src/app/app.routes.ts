@@ -3,6 +3,7 @@ import {LogInComponent} from './log-in/log-in.component';
 import {HomeComponent} from './home/home.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {RegistrationComponent} from './registration/registration.component';
+import { CancionInterfaceComponent } from './cancion-interface/cancion-interface.component';
 
 const routes: Routes = [
   {
@@ -22,6 +23,9 @@ const routes: Routes = [
     children: [
       { path : '',
         component: DashboardComponent
+      },
+      { path: 'cancion/:titulo', 
+        component: CancionInterfaceComponent 
       }
     ]
   }

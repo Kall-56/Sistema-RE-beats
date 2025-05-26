@@ -1,14 +1,20 @@
-import {Component, Input, ViewEncapsulation} from '@angular/core';
-import {Cancion} from './cancion.interface';
+import { Component, Input, ViewEncapsulation} from '@angular/core';
+import { Cancion } from './cancion.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cancion',
-  imports: [
-  ],
+  imports: [],
   templateUrl: './cancion.component.html',
   styleUrl: './cancion.component.css',
   encapsulation: ViewEncapsulation.None
 })
 export class CancionComponent {
   @Input() cancion!: Cancion;
+
+  constructor(private router: Router) {}
+
+  verDetalleCancion(cancion: Cancion) {
+    this.router.navigate(['/cancion', cancion.titulo]);
+  }
 }

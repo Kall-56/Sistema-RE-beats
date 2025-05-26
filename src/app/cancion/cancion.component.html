@@ -1,10 +1,13 @@
-<div class="outer-card">
-  <div class="card">
-    <div class="card-img">
-      <!--<img src="" alt="Imagen de la canción" />-->
-      <div class="img"></div>
+<a (click)="verDetalleCancion(cancion)">
+  <div class="outer-card">
+    <div class="card">
+      <div class="card-img">
+        <!--<img src="" alt="Imagen de la canción" />-->
+        <div class="img"></div>
+      </div>
+      <h2>{{cancion.titulo}}</h2>
+      <span>Usuario</span>
     </div>
-    <h2>{{cancion.titulo}}</h2>
-    <span>Usuario</span>
   </div>
-</div>
+</a>
+
