@@ -18,10 +18,12 @@ import {Cancion} from '../cancion/cancion.interface';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit{
-  canciones: Cancion[] = [];
   private globalService: GlobalService = inject(GlobalService);
   User!: Usuario;
+  nombre: string = 'default';
+  canciones: Cancion[] = [];
   UserPlaylists: Playlist[] = [];
+  misCanciones: Cancion[] = [];
 
   constructor() {
   }
@@ -30,14 +32,18 @@ export class DashboardComponent implements OnInit{
     const unknowUser = this.globalService.userConnected;
     if (unknowUser !== null) {
       this.User = unknowUser;
+
+      this.UserPlaylists = this.User?.Playlists || [];
+
+      this.UserPlaylists.forEach(playlist => {
+        (playlist.Canciones || []).forEach(cancion => {
+          if (cancion) {
+            this.canciones.push(cancion);
+            this.misCanciones.push(cancion);
+          }
+        })
+      });
+      this.nombre = unknowUser.nombre;
     }
-    this.UserPlaylists = this.User?.Playlists || [];
-    this.UserPlaylists.forEach(playlist => {
-      (playlist.Canciones || []).forEach(cancion => {
-        if (cancion) {
-          this.canciones.push(cancion);
-        }
-      })
-    })
   }
 }

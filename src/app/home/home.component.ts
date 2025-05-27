@@ -1,7 +1,8 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {AfterViewInit, Component, inject, OnInit} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {Usuario} from '../log-in/Usuario.interface';
 import {GlobalService} from '../global.service';
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-home',
@@ -12,8 +13,9 @@ import {GlobalService} from '../global.service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent implements OnInit, AfterViewInit{
   private globalService: GlobalService = inject(GlobalService);
+  private locationService: Location = inject(Location);
   User!: Usuario;
 
   ngOnInit() {
@@ -21,5 +23,18 @@ export class HomeComponent implements OnInit{
     if (unknowUser !== null) {
       this.User = unknowUser;
     }
+  }
+
+  ngAfterViewInit() {
+    if (this.User.ID !== 0) {
+      const elemnt = document.getElementById('CreateSong');
+      if (elemnt) {
+        elemnt.style.display = 'none';
+      }
+    }
+  }
+
+  goBack() {
+    this.locationService.back();
   }
 }
