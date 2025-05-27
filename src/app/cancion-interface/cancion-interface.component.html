@@ -25,15 +25,15 @@
     remember to add this when we have a rating system
     -->
     <p class="info">{{cancion.fecha}}</p>
-    <i class="subtitle">Fecha</i>
+    <i class="subtitle">{{cancion.fecha}}</i>
 </div>
 
 <div class="song-links">
     <p class="info">Escuchala en:</p>
     <ul>
 		<li>
-			<a [href]="cancion.Links[0]"> 
-                <i>{{cancion.Links[0]}}</i> 
+			<a [href]="cancion.Links[0]">
+                <i>{{cancion.Links[0]}}</i>
             </a>
 		</li>
         <li>
@@ -50,7 +50,7 @@
         <p class="username">Usuario123</p>
         <p class="user-comment">{{cancion.Comentarios[0]}}</p>
     </div>
-    
+
     <div class="comment-box">
         <p class="username">Usuario456</p>
         <p class="user-comment">{{cancion.Comentarios[1]}}</p>

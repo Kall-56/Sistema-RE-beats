@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, inject, OnInit} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {Usuario} from '../log-in/Usuario.interface';
-import {GlobalService} from '../global.service';
 import {Location} from "@angular/common";
+import {LogInService} from "../log-in/log-in.service";
 
 @Component({
   selector: 'app-home',
@@ -14,12 +14,12 @@ import {Location} from "@angular/common";
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnInit, AfterViewInit{
-  private globalService: GlobalService = inject(GlobalService);
   private locationService: Location = inject(Location);
+  private logInService: LogInService = inject(LogInService);
   User!: Usuario;
 
   ngOnInit() {
-    const unknowUser = this.globalService.userConnected;
+    const unknowUser = this.logInService.getUser();
     if (unknowUser !== null) {
       this.User = unknowUser;
     }

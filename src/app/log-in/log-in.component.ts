@@ -26,7 +26,7 @@ export class LogInComponent {
                 next: response => {
                   console.log(response);
                   setTimeout(() => {
-                    this.globalService.userConnected = response;
+                    this.logInService.setUser(response);
                     this.globalService.AppRouter.navigate(['/home']);
                   },1000);
                 },

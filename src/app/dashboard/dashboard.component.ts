@@ -6,6 +6,7 @@ import {GlobalService} from '../global.service';
 import {Usuario} from '../log-in/Usuario.interface';
 import {Playlist} from '../playlist/playlist.interface';
 import {Cancion} from '../cancion/cancion.interface';
+import {LogInService} from "../log-in/log-in.service";
 
 @Component({
   selector: 'app-dashboard',
@@ -25,11 +26,11 @@ export class DashboardComponent implements OnInit{
   Playlists: Playlist[] = [];
   misCanciones: Cancion[] = [];
 
-  constructor() {
+  constructor(private logInService: LogInService) {
   }
 
   ngOnInit() {
-    const unknowUser = this.globalService.userConnected;
+    const unknowUser = this.logInService.getUser();
     if (unknowUser !== null) {
       this.User = unknowUser;
 

@@ -13,6 +13,7 @@ export class GlobalService {
     userConnected: Usuario | null = null;
     AppRouter: Router = inject(Router);
     playlistActual: Playlist | null = null;
+    cancionActual: Cancion | undefined = undefined;
 
     private backUrl = 'http://localhost:8080/user';
     private http: HttpClient = inject(HttpClient);
@@ -51,5 +52,17 @@ export class GlobalService {
         return forkJoin(requests).pipe(
             map(responses => responses.flat())
         );
+    }
+
+    registrarCancion(titulo: string, autor: string, genero: string, fecha: string, imagen: string): Observable<any> {
+        const url = `http://localhost:8080/admin/CrearCancion`;
+        const params = new HttpParams()
+            .set('titulo', titulo)
+            .set('autor', autor)
+            .set('genero', genero)
+            .set('fecha', fecha)
+            .set('imagen', imagen);
+
+        return this.http.post(url, null,{params});
     }
 }

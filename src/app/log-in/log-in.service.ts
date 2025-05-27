@@ -11,8 +11,21 @@ import {Usuario} from './Usuario.interface';
 export class LogInService {
   private backUrl = 'http://localhost:8080/user';
   private http: HttpClient = inject(HttpClient);
+  private storageKey = 'currentUser';
 
   constructor() {
+  }
+  setUser(user: any): void {
+    sessionStorage.setItem(this.storageKey, JSON.stringify(user));
+  }
+
+  getUser(): any {
+    const user = sessionStorage.getItem(this.storageKey);
+    return user ? JSON.parse(user) : null;
+  }
+
+  clearUser(): void {
+    sessionStorage.removeItem(this.storageKey);
   }
 
   getUserConfirmation(nombre: string, clave: string): Observable<Usuario> {
