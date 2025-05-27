@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router';
-import {LogInComponent} from './log-in/log-in.component';
-import {HomeComponent} from './home/home.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {RegistrationComponent} from './registration/registration.component';
+import { LogInComponent} from './log-in/log-in.component';
+import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RegistrationComponent } from './registration/registration.component';
 import { CancionInterfaceComponent } from './cancion-interface/cancion-interface.component';
+import { CrearCancionComponent } from './crear-cancion/crear-cancion.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,9 @@ const routes: Routes = [
       },
       { path: 'cancion/:titulo', 
         component: CancionInterfaceComponent 
+      },
+      { path: 'crear-cancion',
+        component: CrearCancionComponent
       }
     ]
   }
