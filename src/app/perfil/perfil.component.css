@@ -1,0 +1,61 @@
+.main-perfil {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.perfil-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.perfil-header h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  color: white;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 0.1rem;
+}
+
+#friends {
+  margin-left: 3rem;
+}
+
+#my-playlists {
+  margin-left: 3rem;
+}
+
+.playlist-list {
+  margin-left: 3rem;
+  margin-top: 0.5rem;
+  display: grid;
+}
+
+.amigo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 1rem 3rem;
+}
+
+.amigo i {
+  color: white;
+  font-family: "Inter-SemiBold", Helvetica, serif;
+  font-size: 1.2rem;
+}
+
+.amigo div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #af7cfc;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  margin: 0 1rem;
+}

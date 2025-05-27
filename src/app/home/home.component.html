@@ -8,18 +8,18 @@
           <span>Inicio</span>
         </a>
       </li>
-      <li>
+      <li id="CreateSong">
         <a [routerLink]="['/home/crear-cancion']">
           <span>Crear Cancion</span>
         </a>
       </li>
       <li>
-        <a [routerLink]="['/home']">
+        <a [routerLink]="['/home/perfil']" fragment="my-playlists">
           <span>Tus playlists</span>
         </a>
       </li>
       <li>
-        <a [routerLink]="['/home']">
+        <a [routerLink]="['/home/perfil']" fragment="friends">
           <span>Amigos</span>
         </a>
       </li>
@@ -29,13 +29,13 @@
     <!-- TopBar -->
     <div class="topbar">
       <div class="container-arrows">
-        <div class="container-arrow-left">
+        <a id="return" class="container-arrow-left" (click)="goBack()">
           <i><</i>
-        </div>
-        <div class="perfil">
+        </a>
+        <a class="perfil" [routerLink]="['/home/perfil']">
           <i>{{ User.nombre }}</i>
           <div><i>{{ User.nombre.charAt(0) }}</i></div>
-        </div>
+        </a>
       </div>
     </div>
     <!-- Contenido Principal -->

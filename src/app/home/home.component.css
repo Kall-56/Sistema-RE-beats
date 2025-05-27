@@ -132,3 +132,7 @@ i {
 .nav-main li a i {
     font-size: 2rem;
 }
+
+#CreateSong {
+  display: inherit;
+}

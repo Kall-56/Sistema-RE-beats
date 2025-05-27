@@ -1,0 +1,15 @@
+h1 {
+  margin-left: 2rem;
+  margin-top: 1rem;
+  color: #fff;
+  font-weight: 900;
+  font-size: 24px;
+}
+
+.song-list {
+  display: grid;
+  padding: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  overflow-x: hidden;
+}

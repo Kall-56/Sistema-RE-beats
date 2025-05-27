@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class CancionComponent {
   @Input() cancion!: Cancion;
+  @Input() username!: string;
 
   constructor(private router: Router) {}
 
