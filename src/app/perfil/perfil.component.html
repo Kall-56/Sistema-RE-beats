@@ -1,0 +1,19 @@
+<section class="main-perfil">
+  <div class="perfil-header">
+    <h2>Mi Perfil</h2>
+    <h3>{{User.nombre}}</h3>
+  </div>
+  <h2 id="friends">Amigos</h2>
+  <div>
+    <div class="amigo" *ngFor="let amigo of User.Amigos">
+      <div><i>{{amigo.charAt(0)}}</i></div>
+      <i>{{ amigo }}</i>
+    </div>
+  </div>
+  <h2 id="my-playlists">Mis Playlists</h2>
+  <div class="playlist-list">
+    <app-playlist *ngFor="let playlist of UserPlaylists"
+                  [playlist]="playlist"
+    ></app-playlist>
+  </div>
+</section>

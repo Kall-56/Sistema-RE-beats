@@ -1,0 +1,4 @@
+<h1 id="playlist-title">{{ playlist?.Descripcion }}</h1>
+<div class="song-list">
+  <app-cancion *ngFor="let cancion of playlist?.Canciones" [cancion]="cancion"></app-cancion>
+</div>

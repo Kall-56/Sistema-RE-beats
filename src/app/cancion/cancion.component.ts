@@ -11,4 +11,5 @@ import {Cancion} from './cancion.interface';
 })
 export class CancionComponent {
   @Input() cancion!: Cancion;
+  @Input() username!: string;
 }

@@ -3,6 +3,8 @@ import {LogInComponent} from './log-in/log-in.component';
 import {HomeComponent} from './home/home.component';
 import {DashboardComponent} from './dashboard/dashboard.component';
 import {RegistrationComponent} from './registration/registration.component';
+import {PerfilComponent} from './perfil/perfil.component';
+import {InterfaceVerCancionesComponent} from './interface-ver-canciones/interface-ver-canciones.component';
 
 const routes: Routes = [
   {
@@ -22,6 +24,12 @@ const routes: Routes = [
     children: [
       { path : '',
         component: DashboardComponent
+      },
+      { path : 'perfil',
+        component: PerfilComponent
+      },
+      { path : 'canciones/:Descripcion',
+        component: InterfaceVerCancionesComponent
       }
     ]
   }
