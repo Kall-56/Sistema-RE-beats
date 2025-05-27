@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit{
   User!: Usuario;
   nombre: string = 'default';
   canciones: Cancion[] = [];
-  UserPlaylists: Playlist[] = [];
+  Playlists: Playlist[] = [];
   misCanciones: Cancion[] = [];
 
   constructor() {
@@ -33,17 +33,28 @@ export class DashboardComponent implements OnInit{
     if (unknowUser !== null) {
       this.User = unknowUser;
 
-      this.UserPlaylists = this.User?.Playlists || [];
-
-      this.UserPlaylists.forEach(playlist => {
+      // Limpia los arrays antes de llenarlos
+      this.Playlists = this.User.Playlists ? [...this.User.Playlists] : [];
+      this.misCanciones = [];
+      this.User.Playlists.forEach(playlist => {
         (playlist.Canciones || []).forEach(cancion => {
           if (cancion) {
-            this.canciones.push(cancion);
             this.misCanciones.push(cancion);
           }
-        })
+        });
       });
       this.nombre = unknowUser.nombre;
+
+      this.canciones = this.globalService.cancionesDeAmigos(unknowUser.Amigos);
+
+      // Limpia las playlists antes de agregar las de amigos
+      this.globalService.playlistsDeAmigos(unknowUser.Amigos).subscribe(playlists => {
+        // Solo agrega las playlists de amigos, no las del usuario
+        this.Playlists = this.User.Playlists ? [...this.User.Playlists] : [];
+        playlists.forEach(playlist => {
+          this.Playlists.push(playlist);
+        });
+      });
     }
   }
 }

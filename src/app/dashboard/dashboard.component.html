@@ -2,14 +2,13 @@
   <div class="left-container">
     <h2>Tus amigos han escuchado</h2>
     <section class="song-results">
-      <!--<app-cancion *ngFor="let cancion of canciones"
+      <app-cancion *ngFor="let cancion of canciones"
                    [cancion]="cancion"
-                   [username]="nombre"
-      ></app-cancion>-->
+      ></app-cancion>
     </section>
     <h2>Playlists con mucho Beat</h2>
     <section class="playlist-results">
-      <app-playlist *ngFor="let playlist of UserPlaylists" [playlist]="playlist"></app-playlist>
+      <app-playlist *ngFor="let playlist of Playlists" [playlist]="playlist"></app-playlist>
     </section>
   </div>
   <div class="right-container">
