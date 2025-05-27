@@ -5,4 +5,5 @@ export interface Cancion {
   fecha: string;
   imagen: string;
   Comentarios: string[]; //Default, should have interface comentarios
+  Links: string[];
 }

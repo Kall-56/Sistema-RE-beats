@@ -1,10 +1,14 @@
 import { Routes } from '@angular/router';
-import {LogInComponent} from './log-in/log-in.component';
-import {HomeComponent} from './home/home.component';
-import {DashboardComponent} from './dashboard/dashboard.component';
-import {RegistrationComponent} from './registration/registration.component';
+
+import { LogInComponent} from './log-in/log-in.component';
+import { HomeComponent } from './home/home.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { CancionInterfaceComponent } from './cancion-interface/cancion-interface.component';
+import { CrearCancionComponent } from './crear-cancion/crear-cancion.component';
 import {PerfilComponent} from './perfil/perfil.component';
 import {InterfaceVerCancionesComponent} from './interface-ver-canciones/interface-ver-canciones.component';
+
 
 const routes: Routes = [
   {
@@ -24,6 +28,12 @@ const routes: Routes = [
     children: [
       { path : '',
         component: DashboardComponent
+      },
+      { path: 'cancion/:titulo', 
+        component: CancionInterfaceComponent 
+      },
+      { path: 'crear-cancion',
+        component: CrearCancionComponent
       },
       { path : 'perfil',
         component: PerfilComponent
