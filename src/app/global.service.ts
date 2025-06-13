@@ -1,8 +1,8 @@
 import {inject, Injectable} from '@angular/core';
-import {Usuario} from './log-in/Usuario.interface';
+import {Usuario} from './models/usuario.interface';
 import {Router} from '@angular/router';
-import {Playlist} from "./playlist/playlist.interface";
-import {Cancion} from "./cancion/cancion.interface";
+import {Playlist} from "./models/playlist.interface";
+import {Cancion} from "./models/cancion.interface";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {forkJoin, map, Observable} from "rxjs";
 
