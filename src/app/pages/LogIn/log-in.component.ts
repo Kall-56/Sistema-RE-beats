@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import {CommonModule} from '@angular/common';
-import {LogInService} from '../../log-in.service';
+import {AuthenticationService} from '../../authentication.service';
 import {GlobalService} from '../../global.service';
 import {RouterLink} from '@angular/router';
 
@@ -11,24 +11,22 @@ import {RouterLink} from '@angular/router';
     styleUrl: './log-in.component.css'
 })
 export class LogInComponent {
-    private logInService: LogInService = inject(LogInService);
+    private logInService: AuthenticationService = inject(AuthenticationService);
     private globalService: GlobalService = inject(GlobalService);
-
-    constructor() {}
 
     logIn(nombre: string, clave: string) {
         if (!nombre || !clave) {
             console.error('Introduzca los datos');
         }
         else {
-            this.logInService.getUserConfirmation(nombre,clave).subscribe(
-              {
+            this.logInService.getUserConfirmation(nombre,clave).subscribe({
                 next: response => {
                   console.log(response);
-                  setTimeout(() => {
-                    this.logInService.setUser(response);
-                    this.globalService.AppRouter.navigate(['/home']);
-                  },1000);
+                  this.logInService.setUser(response);
+
+                  this.globalService.AppRouter.navigate(['/home']).catch(error => {
+                    console.error('Error de navegación:', error);
+                  });
                 },
                 error: error => console.error('Error:', error)
               }

@@ -1,5 +1,7 @@
 export interface Usuario {
   nombre: string;
   id: number;
-  rol: 0 | 1;
+  rol: 'Admin' | 'Usuario';
+  amigos: number[];
+  playlists: number[];
 }

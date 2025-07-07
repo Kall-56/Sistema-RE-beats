@@ -12,17 +12,14 @@ import {GlobalService} from '../../global.service';
 
 export class CancionViewComponent implements OnInit {
   globalService: GlobalService = inject(GlobalService);
-  cancion: Cancion;
+  cancion!: Cancion;
 
-  constructor(private route: ActivatedRoute) {
-      this.cancion = <Cancion>this.globalService.cancionActual;
-  }
-
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    const titulo = this.route.snapshot.paramMap.get('titulo');
-
-    console.log(titulo);
-    console.log(this.globalService.cancionActual);
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.globalService.getObject<Cancion>(id,'/MostrarCancion').subscribe(cancion => {
+      this.cancion = cancion;
+    });
   }
 }

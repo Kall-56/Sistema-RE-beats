@@ -12,13 +12,12 @@ import {GlobalService} from "../../global.service";
 })
 export class CancionCardComponent {
   @Input() cancion!: Cancion;
-  @Input() username!: string;
-  globalService: GlobalService = inject(GlobalService);
+  //@Input() username!: string;
+  private globalService: GlobalService = inject(GlobalService);
 
   constructor(private router: Router) {}
 
   verDetalleCancion(cancion: Cancion) {
-    this.globalService.cancionActual = cancion;
-    this.router.navigate(['/home/cancion', cancion.titulo]);
+    this.router.navigate(['/home/cancion', cancion.id]);
   }
 }

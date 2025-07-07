@@ -4,65 +4,93 @@ import {Router} from '@angular/router';
 import {Playlist} from "./models/playlist.interface";
 import {Cancion} from "./models/cancion.interface";
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {forkJoin, map, Observable} from "rxjs";
+import {forkJoin, map, Observable, switchMap} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class GlobalService {
-    userConnected: Usuario | null = null;
-    AppRouter: Router = inject(Router);
-    playlistActual: Playlist | null = null;
-    cancionActual: Cancion | undefined = undefined;
+  AppRouter: Router = inject(Router);
+  playlistActual: Playlist | null = null;
+  private http: HttpClient = inject(HttpClient);
+  private backUrl = 'http://localhost:8080/user';
 
-    private backUrl = 'http://localhost:8080/user';
-    private http: HttpClient = inject(HttpClient);
-    constructor() { }
+  verPerfil(usuario: Usuario) {
+    this.AppRouter.navigate(['/home/PerfilView', usuario.id]);
+  }
 
-    cancionesDeAmigos(nombres: string[]): Cancion[] {
-        const url = `${this.backUrl}/MostrarPlaylists`;
-        let canciones: Cancion[] = [];
-
-        nombres.forEach(nombre => {
-            const params = new HttpParams()
-                .set('nombre', nombre);
-
-            this.http.get<Playlist[]>(url,{params})?.subscribe({
-                next: response => {
-                    response.forEach(playlist => {
-                        playlist.Canciones.forEach(cancion => {
-                            canciones.push(cancion);
-                        });
-                    });
-                },
-                error: error => console.error('Error:', error)
-            });
-        });
-
-        return canciones;
+  getObject<T>(id:number, endUrl: string): Observable<T> {
+    let params: HttpParams;
+    if (endUrl === '/MostrarPlaylists') {
+      params = new HttpParams().set('idPlaylist', id);
+    } else if (endUrl === '/MostrarCancion') {
+      params = new HttpParams().set('idCancion', id);
+    } else {
+      params = new HttpParams().set('id', id);
     }
 
-    playlistsDeAmigos(nombres: string[]): Observable<Playlist[]> {
-        const url = `${this.backUrl}/MostrarPlaylists`;
-        const requests = nombres.map(nombre => {
-            const params = new HttpParams().set('nombre', nombre);
-            return this.http.get<Playlist[]>(url, { params });
-        });
+    return this.http.get<T>(this.backUrl+endUrl,{params}).pipe(
+      map((res: T | T[]) => Array.isArray(res) ? res[0] : res)
+    );
+  }
 
-        return forkJoin(requests).pipe(
-            map(responses => responses.flat())
-        );
-    }
+  getListaObjects<T>(ids: number[], method: (id: number, endUrl: string) => Observable<T>, endUrl: string): Observable<T[]> {
+    const requests = ids.map(id => method(id, endUrl));
+    return forkJoin(requests);
+  }
 
-    registrarCancion(titulo: string, autor: string, genero: string, fecha: string, imagen: string): Observable<any> {
-        const url = `http://localhost:8080/admin/CrearCancion`;
-        const params = new HttpParams()
-            .set('titulo', titulo)
-            .set('autor', autor)
-            .set('genero', genero)
-            .set('fecha', fecha)
-            .set('imagen', imagen);
+  getPlaylistsAmigos(idsAmigos: number[]): Observable<Playlist[]> {
+    return this.getListaObjects<Usuario>(idsAmigos, this.getObject.bind(this), '/MostrarUsuario').pipe(
+      map(listaAmigos => listaAmigos.flatMap(usuario => usuario.playlists ?? [])),
+      switchMap(listaIds => this.getListaObjects<Playlist>(
+        listaIds.map(p => p), this.getObject.bind(this), '/MostrarPlaylists'
+      ))
+    );
+  }
 
-        return this.http.post(url, null,{params});
-    }
+  getCancionesAmigos(idsAmigos: number[]): Observable<Cancion[]> {
+    return this.getPlaylistsAmigos(idsAmigos).pipe(
+      map(listaPlaylists => listaPlaylists.flatMap(playlist => playlist.canciones ?? [])),
+      switchMap(listaIds => this.getListaObjects<Cancion>(
+        listaIds.map(c => c), this.getObject.bind(this), '/MostrarCancion'
+      ))
+    );
+  }
+
+  getPlaylistsUser(idUser: number): Observable<Playlist[]> {
+    return this.getObject<Usuario>(idUser, '/MostrarUsuario').pipe(
+      switchMap(user => this.getListaObjects<Playlist>(
+        user.playlists, this.getObject.bind(this), '/MostrarPlaylists'
+      ))
+    );
+  }
+
+  getCancionesUser(idUser: number): Observable<Cancion[]> {
+    return this.getPlaylistsUser(idUser).pipe(
+      map(listaPlaylists => listaPlaylists.flatMap(playlist => playlist.canciones ?? [])),
+      switchMap(listaIds => this.getListaObjects<Cancion>(
+        listaIds.map(c => c), this.getObject.bind(this), '/MostrarCancion'
+      ))
+    );
+  }
+
+  getCancionesPlaylist(idCanciones: number[]): Observable<Cancion[]> {
+    return this.getListaObjects<Cancion>(idCanciones,this.getObject.bind(this),'/MostrarCancion');
+  }
+
+  getCatalogoCanciones(): Observable<Cancion[]> {
+    return this.http.get<Cancion[]>(this.backUrl+'/CatalogoCanciones');
+  }
+
+  registrarCancion(idUsuario: number, titulo: string, autor: string, fecha: string, imagen: string): Observable<any> {
+      const url = `http://localhost:8080/user/CrearCancion`;
+      const params = new HttpParams()
+        .set('idUsuario', idUsuario)
+        .set('titulo', titulo)
+        .set('autor', autor)
+        .set('fecha', fecha)
+        .set('imagen', imagen);
+
+      return this.http.post(url, null,{params});
+  }
 }

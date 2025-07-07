@@ -16,7 +16,6 @@ export class PlaylistCardComponent {
   constructor(private router: Router) {}
 
   verDetallePlaylist(playlist: Playlist) {
-    this.globalService.playlistActual = playlist;
-    this.router.navigate(['/home/canciones', playlist.Descripcion]);
+    this.router.navigate(['/home/playlist', playlist.id]);
   }
 }

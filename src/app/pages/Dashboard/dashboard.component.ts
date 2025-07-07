@@ -6,7 +6,7 @@ import {GlobalService} from '../../global.service';
 import {Usuario} from '../../models/usuario.interface';
 import {Playlist} from '../../models/playlist.interface';
 import {Cancion} from '../../models/cancion.interface';
-import {LogInService} from "../../log-in.service";
+import {AuthenticationService} from "../../authentication.service";
 
 @Component({
   selector: 'app-Dashboard',
@@ -21,41 +21,38 @@ import {LogInService} from "../../log-in.service";
 export class DashboardComponent implements OnInit{
   private globalService: GlobalService = inject(GlobalService);
   User!: Usuario;
-  nombre: string = 'default';
   canciones: Cancion[] = [];
-  Playlists: Playlist[] = [];
+  playlists: Playlist[] = [];
   misCanciones: Cancion[] = [];
 
-  constructor(private logInService: LogInService) {
+  constructor(private AuthService: AuthenticationService) {
   }
 
   ngOnInit() {
-    const unknowUser = this.logInService.getUser();
-    if (unknowUser !== null) {
-      this.User = unknowUser;
+    this.User = this.AuthService.getUser();
 
-      // Limpia los arrays antes de llenarlos
-      this.Playlists = this.User.Playlists ? [...this.User.Playlists] : [];
-      this.misCanciones = [];
-      this.User.Playlists.forEach(playlist => {
-        (playlist.Canciones || []).forEach(cancion => {
-          if (cancion) {
-            this.misCanciones.push(cancion);
-          }
-        });
-      });
-      this.nombre = unknowUser.nombre;
+    this.globalService.getPlaylistsAmigos(this.User.amigos).subscribe({
+      next: value => {
+        console.log(value);
+        this.playlists = value;
+      },
+      error: err => console.error(err)
+    });
 
-      this.canciones = this.globalService.cancionesDeAmigos(unknowUser.Amigos);
+    this.globalService.getCancionesAmigos(this.User.amigos).subscribe({
+      next: value => {
+        console.log(value);
+        this.canciones = value;
+      },
+      error: err => console.error(err)
+    });
 
-      // Limpia las playlists antes de agregar las de amigos
-      this.globalService.playlistsDeAmigos(unknowUser.Amigos).subscribe(playlists => {
-        // Solo agrega las playlists de amigos, no las del usuario
-        this.Playlists = this.User.Playlists ? [...this.User.Playlists] : [];
-        playlists.forEach(playlist => {
-          this.Playlists.push(playlist);
-        });
-      });
-    }
+    this.globalService.getCancionesUser(this.User.id).subscribe({
+      next: value => {
+        console.log(value);
+        this.misCanciones = value;
+      },
+      error: err => console.error(err)
+    });
   }
 }

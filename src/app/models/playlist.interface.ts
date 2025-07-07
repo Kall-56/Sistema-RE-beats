@@ -3,4 +3,5 @@ export interface Playlist {
   id: number;
   idPropietario: number;
   propietario: string;
+  canciones: number[];
 }

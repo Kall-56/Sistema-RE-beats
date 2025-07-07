@@ -4,6 +4,7 @@ import {CancionCardComponent} from '../../shared/CancionCard/cancion-card.compon
 import {NgForOf} from '@angular/common';
 import {Playlist} from '../../models/playlist.interface';
 import {GlobalService} from '../../global.service';
+import {Cancion} from '../../models/cancion.interface';
 
 @Component({
   selector: 'app-PlaylistView',
@@ -15,16 +16,19 @@ import {GlobalService} from '../../global.service';
   styleUrl: './playlist-view.component.css'
 })
 export class PlaylistViewComponent implements OnInit{
-  playlist: Playlist | undefined;
   globalService: GlobalService = inject(GlobalService);
+  playlist!: Playlist;
+  canciones: Cancion[] = [];
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    const desc = this.route.snapshot.paramMap.get('Descripcion');
-    if (this.globalService.playlistActual !== null) {
-      this.playlist = this.globalService.playlistActual;
-    }
-    console.log(desc);
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.globalService.getObject<Playlist>(id,'/MostrarPlaylists').subscribe(playlist => {
+      this.playlist = playlist;
+      this.globalService.getCancionesPlaylist(this.playlist.canciones).subscribe(canciones => {
+        this.canciones = canciones;
+      });
+    });
   }
 }

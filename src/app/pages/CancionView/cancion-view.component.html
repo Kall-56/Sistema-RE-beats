@@ -1,18 +1,18 @@
 <div class="quick-elements">
-    <img class="main-song-image" alt="song-cover" [src]="cancion.imagen"/>
+    <img class="main-song-image" alt="song-cover"/> <!--[src]="cancion.imagen"-->
 </div>
 
 <div class="description-left">
-    <p class="info">{{cancion.titulo}}</p>
+    <p class="info">{{cancion?.titulo}}</p>
     <!--<p class="info">{{cancion.album}}</p>-->
     <!-- insert info about song album when it becomes a variable in cancion.interface.ts -->
     <ul>
-        <i class="info">{{cancion.genero}}</i>
+        <i class="info"></i>
     </ul>
 </div>
 
 <div class="description-right">
-    <p class="info">{{cancion.autor}}</p>
+    <p class="info">{{cancion?.autor}}</p>
     <!--
     <div class="stars">
         <i></i>
@@ -24,21 +24,21 @@
     <i class="subtitle">Rating</i>
     remember to add this when we have a rating system
     -->
-    <p class="info">{{cancion.fecha}}</p>
-    <i class="subtitle">{{cancion.fecha}}</i>
+    <p class="info">{{cancion?.fecha}}</p>
+    <i class="subtitle">{{cancion?.fecha}}</i>
 </div>
 
 <div class="song-links">
     <p class="info">Escuchala en:</p>
     <ul>
 		<li>
-			<a [href]="cancion.Links[0]">
-                <i>{{cancion.Links[0]}}</i>
+			<a >
+                <i></i>
             </a>
 		</li>
         <li>
-            <a [href]="cancion.Links[1]">
-                <i>{{cancion.Links[1]}}</i>
+            <a >
+                <i></i>
             </a>
         </li>
     </ul>
@@ -48,11 +48,11 @@
     <p class="info">Comentarios</p>
     <div class="comment-box">
         <p class="username">Usuario123</p>
-        <p class="user-comment">{{cancion.Comentarios[0]}}</p>
+        <p class="user-comment"></p>
     </div>
 
     <div class="comment-box">
         <p class="username">Usuario456</p>
-        <p class="user-comment">{{cancion.Comentarios[1]}}</p>
+        <p class="user-comment"></p>
     </div>
 </div>

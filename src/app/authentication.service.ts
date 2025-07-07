@@ -8,18 +8,18 @@ import {Usuario} from './models/usuario.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class LogInService {
+export class AuthenticationService {
   private backUrl = 'http://localhost:8080/user';
   private http: HttpClient = inject(HttpClient);
   private storageKey = 'currentUser';
 
   constructor() {
   }
-  setUser(user: any): void {
+  setUser(user: Usuario): void {
     sessionStorage.setItem(this.storageKey, JSON.stringify(user));
   }
 
-  getUser(): any {
+  getUser(): Usuario {
     const user = sessionStorage.getItem(this.storageKey);
     return user ? JSON.parse(user) : null;
   }

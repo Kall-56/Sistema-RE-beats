@@ -2,7 +2,8 @@ import {AfterViewInit, Component, inject, OnInit} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {Usuario} from '../models/usuario.interface';
 import {Location} from "@angular/common";
-import {LogInService} from "../log-in.service";
+import {AuthenticationService} from "../authentication.service";
+import {GlobalService} from '../global.service';
 
 @Component({
   selector: 'app-home',
@@ -15,18 +16,16 @@ import {LogInService} from "../log-in.service";
 })
 export class RootPageComponent implements OnInit, AfterViewInit{
   private locationService: Location = inject(Location);
-  private logInService: LogInService = inject(LogInService);
+  private authService: AuthenticationService = inject(AuthenticationService);
+  protected globalService: GlobalService = inject(GlobalService);
   User!: Usuario;
 
   ngOnInit() {
-    const unknowUser = this.logInService.getUser();
-    if (unknowUser !== null) {
-      this.User = unknowUser;
-    }
+    this.User = this.authService.getUser();
   }
 
   ngAfterViewInit() {
-    if (this.User.rol === 1) {
+    if (this.User.rol !== 'Admin') {
       const element = document.getElementById('CreateSong');
       if (element) {
         element.style.display = 'none';

@@ -1,5 +1,5 @@
 import {Component, inject} from '@angular/core';
-import {LogInService} from '../../log-in.service';
+import {AuthenticationService} from '../../authentication.service';
 import {RouterLink} from '@angular/router';
 import {GlobalService} from '../../global.service';
 
@@ -12,11 +12,9 @@ import {GlobalService} from '../../global.service';
   styleUrl: './registration.component.css'
 })
 export class RegistrationComponent {
-  private logInService: LogInService = inject(LogInService);
+  private logInService: AuthenticationService = inject(AuthenticationService);
   private globalService: GlobalService = inject(GlobalService);
 
-  constructor() {
-  }
 
   register(nombre: string, clave: string, clave2: string) {
     if (!nombre || !clave || !clave2) {
@@ -26,14 +24,19 @@ export class RegistrationComponent {
       console.error('Las contraseñas tienen que ser iguales');
 
     } else {
-      this.logInService.createUser(nombre, clave)?.subscribe(
+      this.logInService.createUser(nombre, clave).subscribe(
         {
-          next: response => console.log('Usuario creado:', response),
-          error: error => console.error('Error:', error)
+          next: response => {
+            console.log(response);
+            this.globalService.AppRouter.navigate(['/']).catch(error => {
+              console.error('Error de navegación:', error);
+            });
+          },
+          error: error => console.error('[Error]:', error)
         }
       );
       setTimeout(() => {
-        this.globalService.AppRouter.navigate(['/']);
+
       },1000);
     }
   }
