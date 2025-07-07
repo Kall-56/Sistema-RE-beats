@@ -83,7 +83,6 @@ export class GlobalService {
   }
 
   registrarCancion(idUsuario: number, titulo: string, autor: string, fecha: string, imagen: string): Observable<any> {
-      const url = `http://localhost:8080/user/CrearCancion`;
       const params = new HttpParams()
         .set('idUsuario', idUsuario)
         .set('titulo', titulo)
@@ -91,6 +90,32 @@ export class GlobalService {
         .set('fecha', fecha)
         .set('imagen', imagen);
 
-      return this.http.post(url, null,{params});
+      return this.http.post(this.backUrl+'/CrearCancion', null,{params});
+  }
+
+  crearPlaylist(idUsuario: number, titulo: string): Observable<any> {
+    const params = new HttpParams()
+      .set('idUsuario', idUsuario)
+      .set('descripcion', titulo);
+
+    return this.http.post(this.backUrl+'/CrearPlaylist', null,{params});
+  }
+
+  crearComentario(idCancion: number, idUsuario: number, comentario: string): Observable<any> {
+    const params = new HttpParams()
+      .set('idCancion', idCancion)
+      .set('idUsuario', idUsuario)
+      .set('comentarioTexto', comentario);
+
+    return this.http.post(this.backUrl+'/CrearComentario', null,{params});
+  }
+
+  agregarCancionAPlaylist(idUsuario: number, idPlaylist: number, idCancion: number): Observable<any> {
+    const params = new HttpParams()
+      .set('idUsuario', idUsuario)
+      .set('idPlaylist', idPlaylist)
+      .set('idCancion', idCancion);
+
+    return this.http.post(this.backUrl+'/AgregarCancionAPlaylist', null,{params});
   }
 }
