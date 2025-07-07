@@ -1,0 +1,42 @@
+<div class="main">
+
+  <h1>Crear una Cancion</h1>
+
+  <form id="song-entry-form">
+    <div class="form-group cover-upload">
+      <label for="song-cover">Subir Imagen de la Cancion:</label>
+      <input type="file" id="song-cover" name="song-cover" required [(ngModel)]="imagenCancion"
+             accept="image/*"/>
+      <!--idk how rn but maybe make it so that if no image is uploaded it uses a default image-->
+    </div>
+
+    <div class="form-group">
+      <label for="song-title">Titulo:</label>
+      <input type="text" id="song-title" name="song-title" placeholder="Ejemplo" required [(ngModel)]="titulo"/>
+    </div>
+
+    <div class="form-group">
+      <label for="song-author">Autor:</label>
+      <input type="text" id="song-author" name="song-author" placeholder="Ejemplo" required [(ngModel)]="autor"/>
+    </div>
+
+    <div class="form-group">
+      <label for="song-genero">Genero:</label>
+      <select id="song-genero" name="song-genero" [(ngModel)]="genero" required>
+        <option *ngFor="let genero of generos" [value]="genero">{{ genero }}</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="song-fecha">Genero:</label>
+      <input type="date" id="song-fecha" name="song-fecha" [(ngModel)]="fecha" required/>
+    </div>
+
+    <div class="form-group">
+      <label for="song-links">Links:</label>
+      <textarea id="song-links" name="song-links" placeholder="Introdusca un Link, separe con comas si desea añadir varios links" rows="3"
+                required></textarea>
+    </div>
+
+    <button (click)="registarCancion(this.User.id,titulo,autor,fecha,'...')">Subir</button>
+  </form>
+</div>

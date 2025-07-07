@@ -1,0 +1,49 @@
+<section class="container">
+  <!-- SideBar -->
+  <nav class="navbar">
+    <h1 class="logo">RE:BEATS</h1>
+    <ul class="nav-main">
+      <li>
+        <a [routerLink]="['/home']">
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/home/catalogo']">
+          <span>Catalogo</span>
+        </a>
+      </li>
+      <li id="CreateSong">
+        <a [routerLink]="['/home/CrearCancion']">
+          <span>Crear Cancion</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/home/PerfilView']" fragment="my-playlists">
+          <span>Tus playlists</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/home/PerfilView']" fragment="friends">
+          <span>Amigos</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="right-flex">
+    <!-- TopBar -->
+    <div class="topbar">
+      <div class="container-arrows">
+        <a id="return" class="container-arrow-left" (click)="goBack()">
+          <i><</i>
+        </a>
+        <a class="perfil" (click)="this.globalService.verPerfil(User)">
+          <i>{{ User.nombre }}</i>
+          <div><i>{{ User.nombre.charAt(0) }}</i></div>
+        </a>
+      </div>
+    </div>
+    <!-- Contenido Principal -->
+    <router-outlet></router-outlet>
+  </div>
+</section>

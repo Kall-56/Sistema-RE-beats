@@ -1,13 +1,14 @@
 import { Routes } from '@angular/router';
 
-import { LogInComponent} from './log-in/log-in.component';
-import { HomeComponent } from './home/home.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { RegistrationComponent } from './registration/registration.component';
-import { CancionInterfaceComponent } from './cancion-interface/cancion-interface.component';
-import { CrearCancionComponent } from './crear-cancion/crear-cancion.component';
-import {PerfilComponent} from './perfil/perfil.component';
-import {InterfaceVerCancionesComponent} from './interface-ver-canciones/interface-ver-canciones.component';
+import { LogInComponent} from './pages/LogIn/log-in.component';
+import { RootPageComponent } from './RootPage/root-page.component';
+import { DashboardComponent } from './pages/Dashboard/dashboard.component';
+import { RegistrationComponent } from './pages/Registration/registration.component';
+import { CancionViewComponent } from './pages/CancionView/cancion-view.component';
+import { CrearCancionComponent } from './pages/CrearCancion/crear-cancion.component';
+import {PerfilViewComponent} from './pages/PerfilView/perfil-view.component';
+import {PlaylistViewComponent} from './pages/PlaylistView/playlist-view.component';
+import {AllCancionesComponent} from './pages/AllCanciones/all-canciones.component';
 
 
 const routes: Routes = [
@@ -17,30 +18,33 @@ const routes: Routes = [
     title: 'Inicio de Sesion', //Titulo de la pagina
   },
   {
-    path: 'registration', //Path que se especifica en el html anchor "<a>"
+    path: 'Registration', //Path que se especifica en el html anchor "<a>"
     component: RegistrationComponent, //Componente al que lleva
     title: 'Inicio de Sesion', //Titulo de la pagina
   },
   {
     path: 'home',
-    component: HomeComponent,
+    component: RootPageComponent,
     title: 'Re:BEATS',
     children: [
       { path : '',
         component: DashboardComponent
       },
-      { path: 'cancion/:titulo', 
-        component: CancionInterfaceComponent 
+      { path : 'PerfilView/:id',
+        component: PerfilViewComponent
       },
-      { path: 'crear-cancion',
+      { path : 'cancion/:id',
+        component: CancionViewComponent
+      },
+      { path : 'playlist/:id',
+        component: PlaylistViewComponent
+      },
+      { path : 'catalogo',
+        component: AllCancionesComponent
+      },
+      { path: 'CrearCancion',
         component: CrearCancionComponent
       },
-      { path : 'perfil',
-        component: PerfilComponent
-      },
-      { path : 'canciones/:Descripcion',
-        component: InterfaceVerCancionesComponent
-      }
     ]
   }
 ];
