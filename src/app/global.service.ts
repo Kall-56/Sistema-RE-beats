@@ -127,4 +127,21 @@ export class GlobalService {
 
     return this.http.post(this.backUrl+'/AgregarCancionAPlaylist', null,{params});
   }
+
+  eliminarComentario(idComentario: number, idUsuario: number): Observable<any> {
+    const params = new HttpParams()
+      .set('idComentario', idComentario)
+      .set('idUsuario', idUsuario);
+
+    return this.http.post(this.backUrl+'/EliminarComentario', null,{params});
+  }
+
+  editarComentario(idComentario: number, idUsuario: number, comentario: string): Observable<any> {
+    const params = new HttpParams()
+      .set('idComentario', idComentario)
+      .set('idUsuario', idUsuario)
+      .set('nuevoComentario', comentario);
+
+    return this.http.post(this.backUrl+'/EditarComentario', null,{params});
+  }
 }

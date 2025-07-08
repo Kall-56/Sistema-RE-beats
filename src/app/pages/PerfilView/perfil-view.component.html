@@ -12,6 +12,18 @@
     </div>
   </div>
   <h2 id="my-playlists">Mis Playlists</h2>
+  <form (ngSubmit)="crearPlaylist()">
+    <label for="comentario">Crear Playlist:</label>
+    <textarea
+      id="nombrePlaylist"
+      name="nombrePlaylist"
+      rows="1"
+      [(ngModel)]="nuevaPlaylist"
+      placeholder="Escribe el nombre de la Playlist aquí..."
+      required
+    ></textarea>
+    <button type="submit" [disabled]="!nuevaPlaylist">Enviar</button>
+  </form>
   <div class="playlist-list">
     <app-playlist *ngFor="let playlist of UserPlaylists"
                   [playlist]="playlist"

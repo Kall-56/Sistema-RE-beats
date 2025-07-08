@@ -3,7 +3,7 @@ import { Cancion } from '../../models/cancion.interface';
 import { ActivatedRoute } from '@angular/router';
 import {GlobalService} from '../../global.service';
 import {Comentario} from '../../models/comentario.interface';
-import {NgForOf} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {Usuario} from '../../models/usuario.interface';
 import {AuthenticationService} from '../../authentication.service';
@@ -12,7 +12,8 @@ import {AuthenticationService} from '../../authentication.service';
   selector: 'app-CancionView',
   imports: [
     NgForOf,
-    FormsModule
+    FormsModule,
+    NgIf
   ],
   templateUrl: './cancion-view.component.html',
   styleUrl: './cancion-view.component.css'
@@ -25,6 +26,8 @@ export class CancionViewComponent implements OnInit {
   cancion!: Cancion;
   comentarios: Comentario[] = [];
   nuevoComentario: string = '';
+  editingid: number = -1;
+  editingComentario: string = '';
 
   constructor(private route: ActivatedRoute) {}
 
@@ -44,13 +47,43 @@ export class CancionViewComponent implements OnInit {
     this.globalService.crearComentario(this.cancion.id,this.user.id,this.nuevoComentario).subscribe({
       next: response => {
         console.log(response);
-        this.comentarios.push({
-          id: -1,
-          comentario: this.nuevoComentario,
-          idPropietario: this.user.id,
-          propietario: this.user.nombre
+        this.nuevoComentario = '';
+        this.globalService.getComentariosCancion(this.cancion.id).subscribe(comentarios => {
+          this.comentarios = comentarios;
         });
       }, error: err => console.error(err)
     });
+  }
+
+  editarComentario(idComentario: number) {
+    this.globalService.editarComentario(idComentario,this.user.id,this.editingComentario).subscribe({
+      next: response => {
+        console.log(response);
+        this.editingComentario = '';
+        this.globalService.getComentariosCancion(this.cancion.id).subscribe(comentarios => {
+          this.comentarios = comentarios;
+        });
+      }, error: err => console.error(err)
+    });
+    this.editingid = -1;
+  }
+
+  eliminarComentario(idComentario: number) {
+    this.globalService.eliminarComentario(idComentario,this.user.id).subscribe({
+      next: response => {
+        console.log(response);
+        this.globalService.getComentariosCancion(this.cancion.id).subscribe(comentarios => {
+          this.comentarios = comentarios;
+        });
+      }, error: err => console.error(err)
+    });
+  }
+
+  editarCancion() {
+
+  }
+
+  eliminarCancion() {
+
   }
 }

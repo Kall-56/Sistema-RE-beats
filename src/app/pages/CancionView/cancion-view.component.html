@@ -1,8 +1,12 @@
 <div class="quick-elements">
-    <img class="main-song-image" alt="song-cover"/> <!--[src]="cancion.imagen"-->
+    <img class="main-song-image" [src]="`http://localhost:8080${cancion?.imagen}`" alt="song-cover"/>
 </div>
 <div class="description-left">
     <p class="info">{{cancion?.titulo}}</p>
+    <div *ngIf="user?.rol === 'Admin'">
+      <button (click)="editarCancion()">Editar Cancion</button>
+      <button (click)="eliminarCancion()">Eliminar Cancion</button>
+    </div>
 </div>
 <div class="description-right">
     <p class="info">{{cancion?.autor}}</p>
@@ -32,6 +36,29 @@
   </form>
   <div class="comment-box" *ngFor="let comentario of comentarios">
     <p class="username">{{comentario.propietario}}</p>
-    <p class="user-comment">{{comentario.comentario}}</p>
+    <div *ngIf="editingid === comentario.id">
+      <form (ngSubmit)="editarComentario(comentario.id)">
+        <textarea
+          id="comentarioEdit"
+          name="comentarioEdit"
+          rows="4"
+          [(ngModel)]="editingComentario"
+          placeholder="{{comentario.comentario}}"
+          required
+        ></textarea>
+        <button type="submit" [disabled]="!editingComentario">Guardar</button>
+      </form>
+      <button (click)="editingid = -1">Cancelar</button>
+    </div>
+    <div *ngIf="editingid !== comentario.id">
+      <p class="user-comment">{{comentario.comentario}}</p>
+      <div *ngIf="comentario.idPropietario === user.id">
+        <button (click)="editingid = comentario.id">Editar</button>
+        <button (click)="eliminarComentario(comentario.id)">Eliminar</button>
+      </div>
+      <div *ngIf="user?.rol === 'Admin'">
+        <button (click)="eliminarComentario(comentario.id)">Eliminar</button>
+      </div>
+    </div>
   </div>
 </div>
