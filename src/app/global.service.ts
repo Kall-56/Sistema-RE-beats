@@ -5,6 +5,7 @@ import {Playlist} from "./models/playlist.interface";
 import {Cancion} from "./models/cancion.interface";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {forkJoin, map, Observable, switchMap} from "rxjs";
+import {Comentario} from './models/comentario.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,8 @@ export class GlobalService {
     if (endUrl === '/MostrarPlaylists') {
       params = new HttpParams().set('idPlaylist', id);
     } else if (endUrl === '/MostrarCancion') {
+      params = new HttpParams().set('idCancion', id);
+    } else if (endUrl === '/ConsultarComentarios') {
       params = new HttpParams().set('idCancion', id);
     } else {
       params = new HttpParams().set('id', id);
@@ -76,6 +79,12 @@ export class GlobalService {
 
   getCancionesPlaylist(idCanciones: number[]): Observable<Cancion[]> {
     return this.getListaObjects<Cancion>(idCanciones,this.getObject.bind(this),'/MostrarCancion');
+  }
+
+  getComentariosCancion(idCancion: number): Observable<Comentario[]> {
+    const params: HttpParams = new HttpParams().set('idCancion', idCancion);
+
+    return this.http.get<Comentario[]>(this.backUrl+'/ConsultarComentarios',{params});
   }
 
   getCatalogoCanciones(): Observable<Cancion[]> {

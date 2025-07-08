@@ -1,58 +1,37 @@
 <div class="quick-elements">
     <img class="main-song-image" alt="song-cover"/> <!--[src]="cancion.imagen"-->
 </div>
-
 <div class="description-left">
     <p class="info">{{cancion?.titulo}}</p>
-    <!--<p class="info">{{cancion.album}}</p>-->
-    <!-- insert info about song album when it becomes a variable in cancion.interface.ts -->
-    <ul>
-        <i class="info"></i>
-    </ul>
 </div>
-
 <div class="description-right">
     <p class="info">{{cancion?.autor}}</p>
-    <!--
-    <div class="stars">
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-    </div>
-    <i class="subtitle">Rating</i>
-    remember to add this when we have a rating system
-    -->
     <p class="info">{{cancion?.fecha}}</p>
-    <i class="subtitle">{{cancion?.fecha}}</i>
 </div>
-
 <div class="song-links">
     <p class="info">Escuchala en:</p>
     <ul>
-		<li>
-			<a >
-                <i></i>
-            </a>
-		</li>
-        <li>
-            <a >
-                <i></i>
-            </a>
-        </li>
+      <li *ngFor="let link of cancion?.links">
+        <a href="{{link}}">{{link}}</a>
+      </li>
     </ul>
 </div>
-
 <div class="comments-section">
-    <p class="info">Comentarios</p>
-    <div class="comment-box">
-        <p class="username">Usuario123</p>
-        <p class="user-comment"></p>
-    </div>
-
-    <div class="comment-box">
-        <p class="username">Usuario456</p>
-        <p class="user-comment"></p>
-    </div>
+  <p class="info">Comentarios</p>
+  <form (ngSubmit)="enviarComentario()">
+    <label for="comentario">Tu Comentario:</label>
+    <textarea
+      id="comentario"
+      name="comentario"
+      rows="4"
+      [(ngModel)]="nuevoComentario"
+      placeholder="Escribe tu comentario aquí..."
+      required
+    ></textarea>
+    <button type="submit" [disabled]="!nuevoComentario">Enviar</button>
+  </form>
+  <div class="comment-box" *ngFor="let comentario of comentarios">
+    <p class="username">{{comentario.propietario}}</p>
+    <p class="user-comment">{{comentario.comentario}}</p>
+  </div>
 </div>
