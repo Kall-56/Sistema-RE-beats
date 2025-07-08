@@ -12,7 +12,6 @@ import {Comentario} from './models/comentario.interface';
 })
 export class GlobalService {
   AppRouter: Router = inject(Router);
-  playlistActual: Playlist | null = null;
   private http: HttpClient = inject(HttpClient);
   private backUrl = 'http://localhost:8080/user';
 
@@ -91,15 +90,40 @@ export class GlobalService {
     return this.http.get<Cancion[]>(this.backUrl+'/CatalogoCanciones');
   }
 
-  registrarCancion(idUsuario: number, titulo: string, autor: string, fecha: string, imagen: string): Observable<any> {
-      const params = new HttpParams()
-        .set('idUsuario', idUsuario)
-        .set('titulo', titulo)
-        .set('autor', autor)
-        .set('fecha', fecha)
-        .set('imagen', imagen);
+  getCatalogoPlaylists(): Observable<Playlist[]> {
+    return this.http.get<Playlist[]>(this.backUrl+'/MostrarTodasPlaylists');
+  }
 
-      return this.http.post(this.backUrl+'/CrearCancion', null,{params});
+  registrarCancion(idUsuario: number, titulo: string, autor: string, fecha: string, imagen: string): Observable<any> {
+    const params = new HttpParams()
+      .set('idUsuario', idUsuario)
+      .set('titulo', titulo)
+      .set('autor', autor)
+      .set('fecha', fecha)
+      .set('imagen', imagen);
+
+    return this.http.post(this.backUrl+'/CrearCancion', null,{params});
+  }
+
+  editarCancion(idUsuario: number,idCancion: number, titulo: string, autor: string, fecha: string, imagen: string, links: string): Observable<any> {
+    const params = new HttpParams()
+      .set('idUsuario', idUsuario)
+      .set('idCancion', idCancion)
+      .set('nuevoTitulo', titulo)
+      .set('nuevoAutor', autor)
+      .set('nuevaFecha', fecha)
+      .set('nuevaImagen', imagen)
+      .set('links',links);
+
+    return this.http.post(this.backUrl+'/EditarCancion', null,{params});
+  }
+
+  eliminarCancion(idCancion: number, idUsuario: number): Observable<any> {
+    const params = new HttpParams()
+      .set('idCancion', idCancion)
+      .set('idUsuario', idUsuario);
+
+    return this.http.post(this.backUrl+'/EliminarCancion', null,{params});
   }
 
   crearPlaylist(idUsuario: number, titulo: string): Observable<any> {
@@ -144,4 +168,17 @@ export class GlobalService {
 
     return this.http.post(this.backUrl+'/EditarComentario', null,{params});
   }
+
+  editarNombrePlaylist(idUsuario: number, idPlaylist: number, nuevoTitulo: string): Observable<any> {
+    const params = new HttpParams()
+      .set('idPlaylist', idPlaylist)
+      .set('idUsuario', idUsuario)
+      .set('nuevoTitulo', nuevoTitulo);
+
+    return this.http.post(this.backUrl+'/EditarPlaylist', null,{params});
+  }
+
+  /*agregarPlaylist(): Observable<any> {
+
+  }*/
 }

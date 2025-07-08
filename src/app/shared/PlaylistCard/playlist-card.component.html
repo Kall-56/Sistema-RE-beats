@@ -9,4 +9,6 @@
     </div>
   </div>
 </a>
+<button *ngIf="!user.playlists.includes(playlist.id)" (click)="agregarPlaylist()">Agregar playlist</button>
+<button *ngIf="user.playlists.includes(playlist.id)" (click)="agregarPlaylist()">Quitar Playlist</button>
 

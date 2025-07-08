@@ -9,6 +9,7 @@ import { CrearCancionComponent } from './pages/CrearCancion/crear-cancion.compon
 import {PerfilViewComponent} from './pages/PerfilView/perfil-view.component';
 import {PlaylistViewComponent} from './pages/PlaylistView/playlist-view.component';
 import {AllCancionesComponent} from './pages/AllCanciones/all-canciones.component';
+import {AllPlaylistComponent} from './pages/AllPlaylist/all-playlist.component';
 
 
 const routes: Routes = [
@@ -39,8 +40,11 @@ const routes: Routes = [
       { path : 'playlist/:id',
         component: PlaylistViewComponent
       },
-      { path : 'catalogo',
+      { path : 'catalogoCanciones',
         component: AllCancionesComponent
+      },
+      { path : 'catalogoPlaylists',
+        component: AllPlaylistComponent
       },
       { path: 'CrearCancion',
         component: CrearCancionComponent

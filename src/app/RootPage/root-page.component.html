@@ -9,11 +9,16 @@
         </a>
       </li>
       <li>
-        <a [routerLink]="['/home/catalogo']">
-          <span>Catalogo</span>
+        <a [routerLink]="['/home/catalogoCanciones']">
+          <span>Catalogo de Canciones</span>
         </a>
       </li>
-      <li id="CreateSong">
+      <li>
+        <a [routerLink]="['/home/catalogoPlaylists']">
+          <span>Catalogo de Playlists</span>
+        </a>
+      </li>
+      <li *ngIf="User.rol === 'Admin'" id="CreateSong">
         <a [routerLink]="['/home/CrearCancion']">
           <span>Crear Cancion</span>
         </a>

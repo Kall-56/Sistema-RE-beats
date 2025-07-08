@@ -1,10 +1,10 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, inject, OnDestroy, OnInit} from '@angular/core';
 import { Cancion } from '../../models/cancion.interface';
 import { ActivatedRoute } from '@angular/router';
 import {GlobalService} from '../../global.service';
 import {Comentario} from '../../models/comentario.interface';
 import {NgForOf, NgIf} from '@angular/common';
-import {FormsModule} from '@angular/forms';
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Usuario} from '../../models/usuario.interface';
 import {AuthenticationService} from '../../authentication.service';
 
@@ -13,23 +13,37 @@ import {AuthenticationService} from '../../authentication.service';
   imports: [
     NgForOf,
     FormsModule,
-    NgIf
+    NgIf,
+    ReactiveFormsModule
   ],
   templateUrl: './cancion-view.component.html',
   styleUrl: './cancion-view.component.css'
 })
 
-export class CancionViewComponent implements OnInit {
+export class CancionViewComponent implements OnInit, OnDestroy {
   globalService: GlobalService = inject(GlobalService);
   authService = inject(AuthenticationService);
   user!: Usuario;
   cancion!: Cancion;
+  editingCancion: boolean = false;
+  form: FormGroup;
+  selectedImageFile: File | null = null;
+  previewUrl: string | null = null;
+
   comentarios: Comentario[] = [];
   nuevoComentario: string = '';
   editingid: number = -1;
   editingComentario: string = '';
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private fb: FormBuilder) {
+    this.form = this.fb.group({
+      titulo: ['', Validators.required],
+      autor: ['', Validators.required],
+      fecha: ['', Validators.required],
+      imagen: [null, Validators.required],
+      links: ['', Validators.required],
+    });
+  }
 
   ngOnInit() {
     this.user = this.authService.getUser();
@@ -75,15 +89,69 @@ export class CancionViewComponent implements OnInit {
         this.globalService.getComentariosCancion(this.cancion.id).subscribe(comentarios => {
           this.comentarios = comentarios;
         });
-      }, error: err => console.error(err)
+      }, error: err => {
+        if (err.status === 404) {
+          console.log('No hay comentarios');
+        } else {
+          console.error(err);
+        }
+      }
     });
   }
 
   editarCancion() {
-
+    console.log(this.form.value);
+    if (this.form.valid) {
+      const titulo: string = this.form.value.titulo;
+      const autor: string = this.form.value.autor;
+      const fecha: string = this.form.value.fecha.toString();
+      const imagen = this.selectedImageFile!.toString();
+      const links: string = this.form.value.links;
+      this.globalService.editarCancion(this.user.id,this.cancion.id,titulo,autor,fecha,imagen,links).subscribe({
+        next: response => {
+          console.log(response);
+          this.editingCancion = false;
+          window.location.reload();
+        },
+        error: error => console.log(error)
+      });
+    }
   }
 
   eliminarCancion() {
+    this.globalService.eliminarCancion(this.cancion.id,this.user.id).subscribe({
+      next: response => {
+        console.log(response);
+        this.globalService.AppRouter.navigate(['/home/catalogo']).catch(error =>
+          console.error('Error de navegación:', error)
+        );
+      }, error: err => console.error(err)
+    });
+  }
 
+  onImageSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+
+    if (!file) return;
+
+    const allowedTypes = ['image/png', 'image/jpeg'];
+    if (!allowedTypes.includes(file.type)) {
+      this.form.get('imagen')?.setErrors({ invalidType: true });
+      this.selectedImageFile = null;
+      this.previewUrl = null;
+      return;
+    }
+
+    this.selectedImageFile = file;
+    this.form.get('imagen')?.setErrors(null);
+    this.previewUrl = URL.createObjectURL(file);
+  }
+
+  ngOnDestroy() {
+    if (this.previewUrl) {
+      URL.revokeObjectURL(this.previewUrl); // Prevent memory leaks
+      this.previewUrl = null;
+    }
   }
 }

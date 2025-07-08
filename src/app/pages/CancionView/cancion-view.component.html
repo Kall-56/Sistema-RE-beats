@@ -4,8 +4,38 @@
 <div class="description-left">
     <p class="info">{{cancion?.titulo}}</p>
     <div *ngIf="user?.rol === 'Admin'">
-      <button (click)="editarCancion()">Editar Cancion</button>
+      <button (click)="editingCancion = true">Editar Cancion</button>
       <button (click)="eliminarCancion()">Eliminar Cancion</button>
+      <div *ngIf="editingCancion">
+        <form id="song-entry-form" [formGroup]="form" (ngSubmit)="editarCancion()">
+          <label for="song-cover">ESTO DEBERIA SER COMO UN POPUP</label>
+          <label for="song-cover">En css se puede usar position absolute para simular el popup</label>
+          <img *ngIf="previewUrl"
+               [src]="previewUrl"
+               alt="Vista previa"
+               style="max-width: 300px; margin-top: 10px;" />
+          <label for="song-cover">Subir Imagen de la Cancion:</label>
+          <input type="file"
+                 id="song-cover"
+                 name="song-cover"
+                 accept=".jpg,.jpeg,.png"
+                 (change)="onImageSelected($event)"/>
+          <label for="song-title">Titulo:</label>
+          <input formControlName="titulo" type="text" id="song-title" name="song-title" placeholder="Introduce el Titulo Aqui..." required/>
+          <label for="song-author">Autor:</label>
+          <input formControlName="autor" type="text" id="song-author" name="song-author" placeholder="Autor de la cancion" required/>
+          <label for="song-fecha">Fecha de publicacion:</label>
+          <input formControlName="fecha" type="date" id="song-fecha" name="song-fecha" required/>
+          <label for="song-links">Links:</label>
+          <textarea formControlName="links" id="song-links" name="song-links"
+                    placeholder="Introduzca un Link, separe con comas si desea añadir varios links"
+                    rows="3"
+                    required>
+        </textarea>
+          <button type="submit" [disabled]="form.invalid">Subir</button>
+        </form>
+        <button (click)="editingCancion = false; previewUrl = null">Cancelar</button>
+      </div>
     </div>
 </div>
 <div class="description-right">
@@ -54,9 +84,8 @@
       <p class="user-comment">{{comentario.comentario}}</p>
       <div *ngIf="comentario.idPropietario === user.id">
         <button (click)="editingid = comentario.id">Editar</button>
-        <button (click)="eliminarComentario(comentario.id)">Eliminar</button>
       </div>
-      <div *ngIf="user?.rol === 'Admin'">
+      <div *ngIf="(user?.rol === 'Admin') || (comentario.idPropietario === user?.id)">
         <button (click)="eliminarComentario(comentario.id)">Eliminar</button>
       </div>
     </div>
