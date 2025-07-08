@@ -59,6 +59,18 @@ export class GlobalService {
     );
   }
 
+  getAmigos(idsAmigos: number[]): Observable<Usuario[]> {
+    return this.getListaObjects<Usuario>(idsAmigos,this.getObject.bind(this),'/MostrarUsuario');
+  }
+
+  editarNombre(id: number, nombre: string): Observable<any> {
+    const params = new HttpParams()
+      .set('idUsuario', id)
+      .set('nuevoNombre', nombre);
+
+    return this.http.post(this.backUrl+'/EditarNombre', null,{params});
+  }
+
   getPlaylistsUser(idUser: number): Observable<Playlist[]> {
     return this.getObject<Usuario>(idUser, '/MostrarUsuario').pipe(
       switchMap(user => this.getListaObjects<Playlist>(
@@ -179,6 +191,8 @@ export class GlobalService {
   }
 
   /*agregarPlaylist(): Observable<any> {
+  }
 
+  quitarPlaylist(): Observable<any> {
   }*/
 }

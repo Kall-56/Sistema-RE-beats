@@ -26,6 +26,8 @@ export class RootPageComponent implements OnInit{
   }
 
   goBack() {
-    this.locationService.back();
+    //this.locationService.back();
+    this.authService.clearUser();
+    this.globalService.AppRouter.navigate(['']);
   }
 }

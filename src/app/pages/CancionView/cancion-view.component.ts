@@ -50,9 +50,18 @@ export class CancionViewComponent implements OnInit, OnDestroy {
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.globalService.getObject<Cancion>(id,'/MostrarCancion').subscribe(cancion => {
       this.cancion = cancion;
-      this.globalService.getComentariosCancion(this.cancion.id).subscribe(comentarios => {
+      this.globalService.getComentariosCancion(this.cancion.id).subscribe({
+        next: comentarios => {
         this.comentarios = comentarios;
-      });
+        },
+        error: err => {
+          if (err.status === 404) {
+            console.log(err.error.mensaje);
+          } else {
+            console.error(err);
+          }
+        }
+    });
     });
   }
 
@@ -86,16 +95,21 @@ export class CancionViewComponent implements OnInit, OnDestroy {
     this.globalService.eliminarComentario(idComentario,this.user.id).subscribe({
       next: response => {
         console.log(response);
-        this.globalService.getComentariosCancion(this.cancion.id).subscribe(comentarios => {
-          this.comentarios = comentarios;
+        this.globalService.getComentariosCancion(this.cancion.id).subscribe({
+          next: comentarios => {
+            this.comentarios = comentarios;
+          },
+          error: err => {
+            if (err.status === 404) {
+              console.log(err.error.mensaje);
+              this.comentarios = [];
+            } else {
+              console.error(err);
+            }
+          }
         });
-      }, error: err => {
-        if (err.status === 404) {
-          console.log('No hay comentarios');
-        } else {
-          console.error(err);
-        }
-      }
+      },
+      error: err => {console.error(err);}
     });
   }
 
@@ -122,7 +136,7 @@ export class CancionViewComponent implements OnInit, OnDestroy {
     this.globalService.eliminarCancion(this.cancion.id,this.user.id).subscribe({
       next: response => {
         console.log(response);
-        this.globalService.AppRouter.navigate(['/home/catalogo']).catch(error =>
+        this.globalService.AppRouter.navigate(['/home/catalogoCanciones']).catch(error =>
           console.error('Error de navegación:', error)
         );
       }, error: err => console.error(err)

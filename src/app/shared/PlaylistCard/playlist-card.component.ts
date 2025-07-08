@@ -33,4 +33,8 @@ export class PlaylistCardComponent implements OnInit{
   agregarPlaylist() {
 
   }
+
+  navegarPerfil() {
+    this.router.navigate(['/home/PerfilView', this.playlist.idPropietario]);
+  }
 }
