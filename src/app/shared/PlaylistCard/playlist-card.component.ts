@@ -34,19 +34,15 @@ export class PlaylistCardComponent implements OnInit{
     this.globalService.agregarPlaylist(this.user.id,this.playlist.id).subscribe(response => {
       console.log(response);
       this.user.playlists.push(this.playlist.id);
+      this.authService.setUser(this.user);
     });
   }
 
   quitarPlaylist() {
     this.globalService.quitarPlaylist(this.user.id,this.playlist.id).subscribe(response => {
       console.log(response);
-      this.user.playlists.flatMap(id => {
-        if (id === this.playlist.id) {
-          return [];
-        } else {
-          return id;
-        }
-      });
+      this.user.playlists.filter(id => id === this.playlist.id);
+      this.authService.setUser(this.user);
     });
   }
 
