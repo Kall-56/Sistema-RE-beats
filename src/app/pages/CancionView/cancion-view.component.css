@@ -1,5 +1,6 @@
 *{
     color: white;
+    font-family: "Inter-SemiBold", Helvetica, serif;
 }
 
 .quick-elements {
@@ -17,15 +18,24 @@
     cursor: pointer;
 }
 
+.main-song-image {
+  width: 450px;
+  height: 450px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15); 
+}
+
 .description-left, .description-right {
     display: inline-block;
     vertical-align: top;
-    width: 45%;
-    margin: 10px;
+    width: 30%;
+    margin: 2%;
 }
 
 .description-left {
     text-align: left;
+    margin-left: 20%;
 }
 
 .description-right {
@@ -56,6 +66,7 @@
 */
 
 .song-links, .comments-section {
+    background-color:  #131313;
     margin-top: 20px;
     padding: 10px;
     border-top: 1px solid #ccc;
@@ -65,12 +76,50 @@
     margin-bottom: 10px;
 }
 
+.links{
+    color:rgb(113, 113, 242);
+}
+
+.comments-section form{
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.comments-section label{
+    margin-bottom: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+}
+
+.comments-section textarea{
+    color: black;           
+    background: #fff;         
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    padding: 8px;
+    font-size: 1rem;
+    width: 100%;               
+    box-sizing: border-box;
+    margin-bottom: 10px;
+}
+
+.comments-section button[type="submit"] {
+    size: 15%;
+    align-self: flex-end;      
+    margin-top: 10px;
+}
+
 .comment-box {
     border: 1px solid #ccc;
     padding: 10px;
     margin: 10px 0;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: stretch;
 }
 .comment-box.heart{
 	display: inline-block;
@@ -81,6 +130,28 @@
     top: 10px; 
     right: 10px; 
 }
+
 .username {
-    margin-right: 25px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.comment-actions button {
+    margin-left: 5px;
+    color: black;           
+    background: #fff; 
+}
+
+.user-comment {
+    margin: 0;
+    padding-left: 5px;
+    color: #fff;
+    word-break: break-word;
 }

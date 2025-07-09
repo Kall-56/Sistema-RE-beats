@@ -24,16 +24,14 @@ h3 {
 
 #friends {
   margin-left: 3rem;
+  margin-bottom: 1.5rem; 
 }
 
-#my-playlists {
-  margin-left: 3rem;
-}
-
-.playlist-list {
-  margin-left: 3rem;
-  margin-top: 0.5rem;
+.amigos-list {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1.2rem;
+  margin: 0 3rem 2.5rem 3rem; 
 }
 
 .amigo {
@@ -58,4 +56,52 @@ h3 {
   height: 3rem;
   border-radius: 50%;
   margin: 0 1rem;
+}
+
+.section-separator {
+  height: 2.5rem;
+}
+
+#my-playlists {
+  margin-left: 3rem;
+  margin-bottom: 1.5rem;
+}
+
+.playlist-label {
+  display: block;
+  margin-left: 3rem;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+.playlist-form {
+  display: flex;
+  align-items: flex-start;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+  width: auto;
+  max-width: calc(100% - 6rem);
+}
+
+.playlist-form textarea {
+  flex: 1 1 auto;
+  min-width: 200px;
+  max-width: 600px;
+}
+
+.playlist-form button {
+  height: 2.2rem;
+  align-self: flex-start;
+}
+
+.playlist-list {
+  margin-left: 3rem;
+  margin-right: 3rem;
+  margin-top: 0.5rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.2rem;
 }

@@ -39,19 +39,19 @@
     </div>
 </div>
 <div class="description-right">
-    <p class="info">{{cancion?.autor}}</p>
+    <p class="info">por {{cancion?.autor}}</p>
     <p class="info">{{cancion?.fecha}}</p>
 </div>
 <div class="song-links">
     <p class="info">Escuchala en:</p>
     <ul>
       <li *ngFor="let link of cancion?.links">
-        <a href="{{link}}">{{link}}</a>
+        <a class="links" href="{{link}}">{{link}}</a>
       </li>
     </ul>
 </div>
 <div class="comments-section">
-  <p class="info">Comentarios</p>
+  <p class="info">Comentarios:</p>
   <form (ngSubmit)="enviarComentario()">
     <label for="comentario">Tu Comentario:</label>
     <textarea
@@ -65,7 +65,13 @@
     <button type="submit" [disabled]="!nuevoComentario">Enviar</button>
   </form>
   <div class="comment-box" *ngFor="let comentario of comentarios">
-    <p class="username">{{comentario.propietario}}</p>
+    <div class="comment-header">
+      <span class="username">{{comentario.propietario}}</span>
+      <span class="comment-actions" *ngIf="editingid !== comentario.id">
+        <button *ngIf="comentario.idPropietario === user.id" (click)="editingid = comentario.id">Editar</button>
+        <button *ngIf="(user?.rol === 'Admin') || (comentario.idPropietario === user?.id)" (click)="eliminarComentario(comentario.id)">Eliminar</button>
+      </span>
+    </div>
     <div *ngIf="editingid === comentario.id">
       <form (ngSubmit)="editarComentario(comentario.id)">
         <textarea
@@ -82,12 +88,6 @@
     </div>
     <div *ngIf="editingid !== comentario.id">
       <p class="user-comment">{{comentario.comentario}}</p>
-      <div *ngIf="comentario.idPropietario === user.id">
-        <button (click)="editingid = comentario.id">Editar</button>
-      </div>
-      <div *ngIf="(user?.rol === 'Admin') || (comentario.idPropietario === user?.id)">
-        <button (click)="eliminarComentario(comentario.id)">Eliminar</button>
-      </div>
     </div>
   </div>
 </div>

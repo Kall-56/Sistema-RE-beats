@@ -1,4 +1,9 @@
 .outer-card {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background: linear-gradient(160deg, #43384b 0%, #3d1946 100%);
   border-radius: 0.5rem;
   padding: 1.6rem;
@@ -29,4 +34,20 @@
   font-size: 1rem;
   color: #fff;
   font-weight: 600;
+}
+
+button {
+  display: block;
+  margin: 20px auto 0 auto;   
+  padding: 12px 32px;         
+  font-size: 1.1rem;         
+  border-radius: 8px;
+  background: #343175;
+  color: #fff;
+}
+
+.button-group, .cancion-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
 }
