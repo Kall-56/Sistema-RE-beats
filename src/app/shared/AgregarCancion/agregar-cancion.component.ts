@@ -26,7 +26,7 @@ export class AgregarCancionComponent implements OnInit{
   ngOnInit(): void {
     this.user = this.authService.getUser();
     this.globalService.getPlaylistsUser(this.user.id).subscribe(playlists => {
-      this.playlists = playlists;
+      this.playlists = playlists.filter(playlist => playlist.idPropietario === this.user.id);
     });
   }
 

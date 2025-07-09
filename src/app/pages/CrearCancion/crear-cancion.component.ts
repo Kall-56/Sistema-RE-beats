@@ -50,7 +50,7 @@ export class CrearCancionComponent implements OnInit, OnDestroy{
       this.globalService.registrarCancion(this.User.id,titulo,autor,fecha,imagen).subscribe({
         next: response => {
           console.log(response);
-          this.globalService.AppRouter.navigate(['/home/catalogo']).catch(error =>
+          this.globalService.AppRouter.navigate(['/home/catalogoCanciones']).catch(error =>
             console.error('Error de navegación:', error)
           );
         },

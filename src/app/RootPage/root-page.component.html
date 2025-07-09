@@ -24,12 +24,12 @@
         </a>
       </li>
       <li>
-        <a [routerLink]="['/home/PerfilView']" fragment="my-playlists">
+        <a [routerLink]="['/home/PerfilView', User.id]" fragment="my-playlists">
           <span>Tus playlists</span>
         </a>
       </li>
       <li>
-        <a [routerLink]="['/home/PerfilView']" fragment="friends">
+        <a [routerLink]="['/home/PerfilView', User.id]" fragment="friends">
           <span>Amigos</span>
         </a>
       </li>
@@ -40,7 +40,7 @@
     <div class="topbar">
       <div class="container-arrows">
         <a id="return" class="container-arrow-left" (click)="goBack()">
-          <i><</i>
+          <i>Cerrar Sesion</i>
         </a>
         <a class="perfil" (click)="this.globalService.verPerfil(User)">
           <i>{{ User.nombre }}</i>

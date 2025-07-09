@@ -59,6 +59,18 @@ export class GlobalService {
     );
   }
 
+  getAmigos(idsAmigos: number[]): Observable<Usuario[]> {
+    return this.getListaObjects<Usuario>(idsAmigos,this.getObject.bind(this),'/MostrarUsuario');
+  }
+
+  editarNombre(id: number, nombre: string): Observable<any> {
+    const params = new HttpParams()
+      .set('idUsuario', id)
+      .set('nuevoNombre', nombre);
+
+    return this.http.post(this.backUrl+'/EditarNombre', null,{params});
+  }
+
   getPlaylistsUser(idUser: number): Observable<Playlist[]> {
     return this.getObject<Usuario>(idUser, '/MostrarUsuario').pipe(
       switchMap(user => this.getListaObjects<Playlist>(
@@ -178,7 +190,35 @@ export class GlobalService {
     return this.http.post(this.backUrl+'/EditarPlaylist', null,{params});
   }
 
-  /*agregarPlaylist(): Observable<any> {
+  agregarPlaylist(idUsuario: number, idPlaylist: number): Observable<any> {
+    const params = new HttpParams()
+      .set('idUsuario', idUsuario)
+      .set('idPlaylist', idPlaylist);
 
-  }*/
+    return this.http.post(this.backUrl+'/AgregarPlaylistAUsuario', null,{params});
+  }
+
+  quitarPlaylist(idUsuario: number, idPlaylist: number): Observable<any> {
+    const params = new HttpParams()
+      .set('idUsuario', idUsuario)
+      .set('idPlaylist', idPlaylist);
+
+    return this.http.post(this.backUrl+'/EliminarPlaylistDeUsuario', null,{params});
+  }
+
+  agregarAmigo(idUsuario: number, idAmigo: number): Observable<any> {
+    const params = new HttpParams()
+      .set('idUsuario', idUsuario)
+      .set('idAmigo', idAmigo);
+
+    return this.http.post(this.backUrl+'/AgregarAmigo', null,{params});
+  }
+
+  quitarAmigo(idUsuario: number, idAmigo: number): Observable<any> {
+    const params = new HttpParams()
+      .set('idUsuario', idUsuario)
+      .set('idAmigo', idAmigo);
+
+    return this.http.post(this.backUrl+'/EliminarAmigo', null,{params});
+  }
 }

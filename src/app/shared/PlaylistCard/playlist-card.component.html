@@ -5,10 +5,10 @@
         <div class="img"></div>
       </div>
       <h2>{{playlist.titulo}}</h2>
-      <span>{{playlist.propietario}}</span>
+      <a (click)="navegarPerfil()">{{playlist.propietario}}</a>
     </div>
   </div>
 </a>
 <button *ngIf="!user.playlists.includes(playlist.id)" (click)="agregarPlaylist()">Agregar playlist</button>
-<button *ngIf="user.playlists.includes(playlist.id)" (click)="agregarPlaylist()">Quitar Playlist</button>
+<button *ngIf="user.playlists.includes(playlist.id)" (click)="quitarPlaylist()">Quitar Playlist</button>
 
