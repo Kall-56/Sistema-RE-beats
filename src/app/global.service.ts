@@ -205,4 +205,20 @@ export class GlobalService {
 
     return this.http.post(this.backUrl+'/EliminarPlaylistDeUsuario', null,{params});
   }
+
+  agregarAmigo(idUsuario: number, idAmigo: number): Observable<any> {
+    const params = new HttpParams()
+      .set('idUsuario', idUsuario)
+      .set('idAmigo', idAmigo);
+
+    return this.http.post(this.backUrl+'/AgregarAmigo', null,{params});
+  }
+
+  quitarAmigo(idUsuario: number, idAmigo: number): Observable<any> {
+    const params = new HttpParams()
+      .set('idUsuario', idUsuario)
+      .set('idAmigo', idAmigo);
+
+    return this.http.post(this.backUrl+'/EliminarAmigo', null,{params});
+  }
 }

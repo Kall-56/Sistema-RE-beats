@@ -24,7 +24,8 @@ export class PerfilViewComponent implements OnInit{
   private globalService: GlobalService = inject(GlobalService);
   private route: ActivatedRoute = inject(ActivatedRoute);
   private authService = inject(AuthenticationService);
-  userPerfil!: Usuario;
+  idPerfil!: number;
+  nombre: string | undefined;
   user!: Usuario;
   UserPlaylists: Playlist[] = [];
   nuevaPlaylist: string = '';
@@ -36,9 +37,10 @@ export class PerfilViewComponent implements OnInit{
 
   ngOnInit() {
     const id = Number(this.route.snapshot.paramMap.get('id'));
+    this.idPerfil = id;
     this.user = this.authService.getUser();
     this.globalService.getObject<Usuario>(id,'/MostrarUsuario').subscribe(usuario => {
-      this.userPerfil = usuario;
+      this.nombre = usuario.nombre;
       this.globalService.getAmigos(usuario.amigos).subscribe(amigos => {
         if (amigos !== undefined) {
           this.amigos = amigos;
@@ -64,7 +66,26 @@ export class PerfilViewComponent implements OnInit{
     this.globalService.editarNombre(this.user.id,this.nuevoNombre).subscribe(response => {
       console.log(response);
       this.editingPerfil = false;
+      this.user.nombre = this.nuevoNombre;
+      this.authService.setUser(this.user);
       window.location.reload();
+    });
+  }
+
+  agregarAmigo() {
+    this.globalService.agregarAmigo(this.user.id,this.idPerfil).subscribe(response => {
+      console.log(response);
+      this.user.amigos.push(this.idPerfil);
+      this.authService.setUser(this.user);
+    });
+  }
+
+  quitarAmigo() {
+    this.globalService.quitarAmigo(this.user.id,this.idPerfil).subscribe(response => {
+      console.log(response);
+      this.user.amigos = this.user.amigos.filter(id => id !== this.idPerfil);
+      this.authService.setUser(this.user);
+      console.log(this.user.amigos);
     });
   }
 }

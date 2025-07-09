@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, RouterLink} from '@angular/router';
 import {CancionCardComponent} from '../../shared/CancionCard/cancion-card.component';
 import {NgForOf, NgIf} from '@angular/common';
 import {Playlist} from '../../models/playlist.interface';
@@ -15,7 +15,8 @@ import {AuthenticationService} from '../../authentication.service';
     CancionCardComponent,
     NgForOf,
     FormsModule,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   templateUrl: './playlist-view.component.html',
   styleUrl: './playlist-view.component.css'

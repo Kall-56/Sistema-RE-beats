@@ -1,11 +1,13 @@
 <section class="main-perfil">
   <div class="perfil-header">
-    <h2>{{userPerfil?.nombre}}</h2>
-    <div *ngIf="userPerfil?.id !== user?.id">
-      <button *ngIf="!user.amigos.includes(userPerfil.id)">Agregar Amigo</button>
-      <button *ngIf="user.amigos.includes(userPerfil.id)">Eliminar Amigo</button>
+    <h2>{{nombre}}</h2>
+    <div *ngIf="idPerfil !== user?.id">
+      <button *ngIf="!user.amigos.includes(idPerfil)"
+              (click)="agregarAmigo()">Agregar Amigo</button>
+      <button *ngIf="user.amigos.includes(idPerfil)"
+              (click)="quitarAmigo()">Eliminar Amigo</button>
     </div>
-    <div *ngIf="userPerfil?.id === user?.id">
+    <div *ngIf="idPerfil === user?.id">
       <button (click)="editingPerfil = true">Editar Perfil</button>
       <button>Eliminar Perfil</button>
     </div>
@@ -35,7 +37,7 @@
     </div>
   </div>
   <h2 id="my-playlists">Playlists</h2>
-  <div *ngIf="userPerfil?.id === user?.id">
+  <div *ngIf="idPerfil === user?.id">
     <form (ngSubmit)="crearPlaylist()">
       <label for="comentario">Crear Playlist:</label>
       <textarea

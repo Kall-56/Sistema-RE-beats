@@ -46,7 +46,7 @@ export class PlaylistCardComponent implements OnInit{
         } else {
           return id;
         }
-      })
+      });
     });
   }
 
