@@ -95,6 +95,7 @@ i {
     height: 100vh;
 }
 
+
 .logo {
   display: flex;
   justify-content: center;
@@ -132,7 +133,11 @@ i {
 
 .nav-main li a span:hover {
     color: #fff;
+  background-color: #4a4a4a ;
+  border-radius: 5px;
+  padding: 10px;
 }
+
 
 .nav-main li a i {
     font-size: 2rem;
@@ -141,3 +146,5 @@ i {
 #CreateSong {
   display: inherit;
 }
+
+
