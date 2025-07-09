@@ -190,9 +190,19 @@ export class GlobalService {
     return this.http.post(this.backUrl+'/EditarPlaylist', null,{params});
   }
 
-  /*agregarPlaylist(): Observable<any> {
+  agregarPlaylist(idUsuario: number, idPlaylist: number): Observable<any> {
+    const params = new HttpParams()
+      .set('idUsuario', idUsuario)
+      .set('idPlaylist', idPlaylist);
+
+    return this.http.post(this.backUrl+'/AgregarPlaylistAUsuario', null,{params});
   }
 
-  quitarPlaylist(): Observable<any> {
-  }*/
+  quitarPlaylist(idUsuario: number, idPlaylist: number): Observable<any> {
+    const params = new HttpParams()
+      .set('idUsuario', idUsuario)
+      .set('idPlaylist', idPlaylist);
+
+    return this.http.post(this.backUrl+'/EliminarPlaylistDeUsuario', null,{params});
+  }
 }

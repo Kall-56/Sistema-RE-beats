@@ -31,7 +31,23 @@ export class PlaylistCardComponent implements OnInit{
   }
 
   agregarPlaylist() {
+    this.globalService.agregarPlaylist(this.user.id,this.playlist.id).subscribe(response => {
+      console.log(response);
+      this.user.playlists.push(this.playlist.id);
+    });
+  }
 
+  quitarPlaylist() {
+    this.globalService.quitarPlaylist(this.user.id,this.playlist.id).subscribe(response => {
+      console.log(response);
+      this.user.playlists.flatMap(id => {
+        if (id === this.playlist.id) {
+          return [];
+        } else {
+          return id;
+        }
+      })
+    });
   }
 
   navegarPerfil() {
