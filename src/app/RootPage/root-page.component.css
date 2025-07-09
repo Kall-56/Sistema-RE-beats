@@ -69,10 +69,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    /*margin: 1%;*/
-  margin-left: 3rem;
-  margin-bottom: 1.5rem;
-  margin-top: 1.5rem;
+    margin-left: 3rem;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 
 .container-arrow-left:hover {

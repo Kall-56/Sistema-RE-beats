@@ -79,7 +79,7 @@ h3 {
   font-size: 1.2em;
   margin-bottom: 5px;
   font-family: "Arial Rounded MT Bold", sans-serif;
-  color: greenyellow;
+  color: #85a072;
   margin-right: 1rem;
 }
 
@@ -112,4 +112,20 @@ h3 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.2rem;
+}
+
+#nombrePlaylist{
+  margin-right: 1rem;
+}
+
+#nombreNuevo{
+  font-size: 1.2em;
+  margin-bottom: 5px;
+  font-family: "Arial Rounded MT Bold", sans-serif;
+  color: #85a072;
+  margin-right: 1rem;
+}
+
+#nuevoNombre{
+  margin-right: 1rem;
 }
