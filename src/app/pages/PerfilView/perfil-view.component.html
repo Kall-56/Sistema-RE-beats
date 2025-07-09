@@ -39,7 +39,7 @@
   <h2 id="my-playlists">Playlists</h2>
   <div *ngIf="idPerfil === user?.id">
     <form (ngSubmit)="crearPlaylist()">
-      <label for="comentario">Crear Playlist:</label>
+      <label id="label-playlist" for="comentario">Crear Playlist:</label>
       <textarea
         id="nombrePlaylist"
         name="nombrePlaylist"
