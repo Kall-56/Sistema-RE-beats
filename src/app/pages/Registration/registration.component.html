@@ -1,0 +1,31 @@
+<div class="auth">
+    <div class="overlap-wrapper">
+        <div class="overlap">
+            <div class="overlap-group">
+                <div class="div">
+                    <div class="rectangle"></div>
+                    <div class="rectangle-2"></div>
+                    <div class="content">
+                        <div class="copy">
+                            <div class="inicio-de-sesion">Registro</div>
+                            <p class="ingrese-su-nombre-de">Ingrese su nombre de Usuario y Contraseña</p>
+                        </div>
+                        <form class="input-and-button">
+                            <input type="text" placeholder="Usuario1234" class="label" #nombre>
+                            <input type="password" placeholder="Contraseña1234#$%&amp;*" class="label" #clave>
+                            <input type="password" placeholder="Contraseña1234#$%&amp;*" class="label" #clave2>
+                            <button class="button" type="button" (click)="register(nombre.value,clave.value,clave2.value)">
+                                <div class="text-wrapper">Registrate</div></button>
+                            <button class="div-wrapper" type="button" [routerLink]="['/']"><div class="text-wrapper-3">Cancelar</div></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="re">Re:BEATS</div>
+                <div class="re-BEATS">Re:BEATS</div>
+            </div>
+            <div class="re-2">Re:BEATS</div>
+            <div class="re-3">Re:BEATS</div>
+            <div class="re-4">Re:BEATS</div>
+        </div>
+    </div>
+</div>

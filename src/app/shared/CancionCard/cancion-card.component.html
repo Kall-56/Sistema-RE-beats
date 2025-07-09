@@ -1,0 +1,12 @@
+<a (click)="verDetalleCancion(cancion)">
+  <div class="outer-card">
+    <div class="card">
+      <div class="card-img">
+        <img class="img" [src]="`http://localhost:8080${cancion.imagen}`" alt="imagen cancion"/>
+      </div>
+      <h2>{{cancion.titulo}}</h2>
+    </div>
+  </div>
+</a>
+<button (click)="mostrarComponenteAgregarCancion()">Agregar a playlist</button>
+<app-AgregarCancion *ngIf="mostrarAgregarCancion" [cancion]="cancion"></app-AgregarCancion>

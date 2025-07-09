@@ -1,0 +1,39 @@
+<div class="main">
+  <h1>Crear una Cancion</h1>
+  <form id="song-entry-form" [formGroup]="form" (ngSubmit)="registarCancion()">
+    <div class="form-group cover-upload">
+      <img *ngIf="previewUrl"
+           [src]="previewUrl"
+           alt="Vista previa"
+           style="max-width: 300px; margin-top: 10px;" />
+      <label *ngIf="previewUrl">{{selectedImageFile?.name}}</label>
+      <label for="song-cover">Subir Imagen de la Cancion:</label>
+      <input type="file"
+             id="song-cover"
+             name="song-cover"
+             accept=".jpg,.jpeg,.png"
+             (change)="onImageSelected($event)"/>
+    </div>
+    <div class="form-group">
+      <label for="song-title">Titulo:</label>
+      <input formControlName="titulo" type="text" id="song-title" name="song-title" placeholder="Introduce el Titulo Aqui..." required/>
+    </div>
+    <div class="form-group">
+      <label for="song-author">Autor:</label>
+      <input formControlName="autor" type="text" id="song-author" name="song-author" placeholder="Autor de la cancion" required/>
+    </div>
+    <div class="form-group">
+      <label for="song-fecha">Fecha de publicacion:</label>
+      <input formControlName="fecha" type="date" id="song-fecha" name="song-fecha" required/>
+    </div>
+    <div class="form-group">
+      <label for="song-links">Links:</label>
+      <textarea formControlName="links" id="song-links" name="song-links"
+                placeholder="Introduzca un Link, separe con comas si desea añadir varios links"
+                rows="3"
+                required>
+      </textarea>
+    </div>
+    <button type="submit" [disabled]="form.invalid">Subir</button>
+  </form>
+</div>

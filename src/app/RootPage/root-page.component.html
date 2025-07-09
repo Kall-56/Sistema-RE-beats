@@ -1,0 +1,54 @@
+<section class="container">
+  <!-- SideBar -->
+  <nav class="navbar">
+    <h1 class="logo">RE:BEATS</h1>
+    <ul class="nav-main">
+      <li>
+        <a [routerLink]="['/home']">
+          <span>Home</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/home/catalogoCanciones']">
+          <span>Catalogo de Canciones</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/home/catalogoPlaylists']">
+          <span>Catalogo de Playlists</span>
+        </a>
+      </li>
+      <li *ngIf="User.rol === 'Admin'" id="CreateSong">
+        <a [routerLink]="['/home/CrearCancion']">
+          <span>Crear Cancion</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/home/PerfilView', User.id]" fragment="my-playlists">
+          <span>Tus playlists</span>
+        </a>
+      </li>
+      <li>
+        <a [routerLink]="['/home/PerfilView', User.id]" fragment="friends">
+          <span>Amigos</span>
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <div class="right-flex">
+    <!-- TopBar -->
+    <div class="topbar">
+      <div class="container-arrows">
+        <a id="return" class="container-arrow-left" (click)="goBack()">
+          <i>Cerrar Sesion</i>
+        </a>
+        <a class="perfil" (click)="this.globalService.verPerfil(User)">
+          <i>{{ User.nombre }}</i>
+          <div><i>{{ User.nombre.charAt(0) }}</i></div>
+        </a>
+      </div>
+    </div>
+    <!-- Contenido Principal -->
+    <router-outlet></router-outlet>
+  </div>
+</section>

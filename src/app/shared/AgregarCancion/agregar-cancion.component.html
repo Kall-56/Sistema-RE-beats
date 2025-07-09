@@ -1,0 +1,4 @@
+<div *ngFor="let playlist of playlists">
+  <span>{{ playlist?.titulo }}</span>
+  <button (click)="agregarCancion(user.id,playlist.id,cancion.id)">Agregar canción</button>
+</div>

@@ -1,0 +1,448 @@
+a {
+  text-decoration: none;
+}
+
+.auth {
+  background-color: #0000001a;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.auth .overlap-wrapper {
+  background-color: #0000001a;
+  overflow: hidden;
+  width: 1440px;
+  height: 960px;
+}
+
+.auth .overlap {
+  position: relative;
+  width: 1368px;
+  height: 961px;
+  top: -1px;
+  left: 72px;
+}
+
+.auth .overlap-group {
+  position: absolute;
+  width: 1258px;
+  height: 961px;
+  top: 0;
+  left: 0;
+}
+
+.auth .div {
+  position: absolute;
+  width: 935px;
+  height: 876px;
+  top: 85px;
+  left: 323px;
+}
+
+.auth .rectangle {
+  position: absolute;
+  width: 801px;
+  height: 513px;
+  top: 363px;
+  left: 0;
+  background-color: #00000033;
+  border-radius: 30px 30px 0 0;
+}
+
+.auth .rectangle-2 {
+  position: absolute;
+  width: 655px;
+  height: 559px;
+  top: 174px;
+  left: 280px;
+  background-color: #00000066;
+  border-radius: 30px;
+}
+
+.auth .content {
+  display: flex;
+  flex-direction: column;
+  width: 575px;
+  height: 491px;
+  align-items: center;
+  gap: 46px;
+  position: absolute;
+  top: 0;
+  left: 177px;
+  background-color: #07070799;
+  border-radius: 30px;
+}
+
+.auth .copy {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.auth .inicio-de-sesion {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: "Inter-SemiBold", Helvetica, serif;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 40px;
+  text-align: center;
+  letter-spacing: -0.40px;
+  line-height: 60px;
+  white-space: nowrap;
+}
+
+.auth .ingrese-su-nombre-de {
+  position: relative;
+  width: fit-content;
+  font-family: "Inter-Regular", Helvetica, serif;
+  font-weight: 400;
+  color: #f7f7f7;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.auth .input-and-button {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.auth .label-wrapper {
+  display: flex;
+  width: 400px;
+  height: 40px;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 16px;
+  position: relative;
+  background-color: #00000066;
+  border-radius: 8px;
+  border: 1px solid;
+  border-color: #dfdfdf;
+}
+
+.label {
+  position: relative;
+  flex: 1;
+  width: 80%;
+  margin-top: -4.00px;
+  margin-bottom: -2.00px;
+  padding: 0.5rem 0.5rem 0.5rem 1rem;
+  font-family: "Inter-SemiBold", Helvetica, serif;
+  color: #828282;
+  background-color: #1a1a1a;
+  border-radius: 10px;
+  border: none;
+  font-size: var(--body-text-font-size);
+  letter-spacing: var(--body-text-letter-spacing);
+  line-height: var(--body-text-line-height);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  font-style: var(--body-text-font-style);
+}
+
+.button {
+  all: unset;
+  box-sizing: border-box;
+  width: 402px;
+  gap: 8px;
+  padding: 0 16px;
+  margin-bottom: -1.00px;
+  margin-left: -1.00px;
+  margin-right: -1.00px;
+  border: 1px solid;
+  border-color: #5856d6;
+  display: flex;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background-color: #000000;
+  border-radius: 8px;
+  font-family: "Inter-SemiBold", Helvetica, serif;
+}
+
+.button:hover {
+  background: linear-gradient(
+    90deg,
+    #4644d7 30%,
+    rgba(162, 161, 255, 1) 100%
+  );
+  color: #ffffff;
+  border-color: #ffffff;
+  cursor: pointer;
+}
+
+.auth .text-wrapper {
+  position: relative;
+  width: fit-content;
+  font-family: var(--small-text-font-family), serif;
+  font-weight: var(--small-text-font-weight);
+  color: #ffffff;
+  font-size: var(--small-text-font-size);
+  letter-spacing: var(--small-text-letter-spacing);
+  line-height: var(--small-text-line-height);
+  white-space: nowrap;
+  font-style: var(--small-text-font-style);
+}
+
+.auth .divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.auth .rectangle-3 {
+  position: relative;
+  flex: 1;
+  height: 1px;
+  background-color: #e6e6e6;
+}
+
+.auth .text-wrapper-2 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  font-family: "Inter-Regular", Helvetica, serif;
+  font-weight: 400;
+  color: #828282;
+  font-size: 16px;
+  text-align: center;
+  letter-spacing: 0;
+  line-height: 24px;
+  white-space: nowrap;
+}
+
+.div-wrapper {
+  all: unset;
+  box-sizing: border-box;
+  flex-direction: column;
+  width: 401px;
+  gap: 10px;
+  padding: 8px 173px;
+  border: none;
+  display: flex;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    rgba(88, 86, 214, 1) 0%,
+    rgba(162, 161, 255, 1) 100%
+  );
+  border-radius: 8px;
+  font-family: "Inter-SemiBold", Helvetica, serif;
+}
+
+.auth .div-wrapper::before {
+  position: absolute;
+  inset: 0;
+  padding: 2px;
+  border-radius: 8px;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: 0;
+  pointer-events: inherit;
+  background: transparent;
+}
+
+.div-wrapper:hover {
+  border: 0.2rem solid transparent;
+  border-image: linear-gradient(90deg, #3835de 0%, #a2a1ff 100%) 1;
+  border-radius: 10px;
+  background: white;
+  cursor: pointer;
+}
+
+.text-wrapper-3 {
+  position: relative;
+  width: fit-content;
+  margin-top: -1.00px;
+  margin-left: -24.50px;
+  margin-right: -22.50px;
+  font-family: var(--small-text-font-family), serif;
+  font-weight: var(--small-text-font-weight);
+  color: #ffffff;
+  font-size: var(--small-text-font-size);
+  letter-spacing: var(--small-text-letter-spacing);
+  line-height: var(--small-text-line-height);
+  white-space: nowrap;
+  font-style: var(--small-text-font-style);
+}
+
+.div-wrapper:hover .text-wrapper-3 {
+  color: black;
+}
+
+.auth .re {
+  position: absolute;
+  height: 114px;
+  top: 144px;
+  left: 0;
+  font-family: "Inter-SemiBold", Helvetica, serif;
+  font-weight: 600;
+  color: #ffffffcc;
+  font-size: 76px;
+  text-align: center;
+  letter-spacing: -0.76px;
+  line-height: 114px;
+  white-space: nowrap;
+}
+
+.auth .re-BEATS {
+  position: absolute;
+  height: 144px;
+  top: 0;
+  left: 0;
+  font-family: "Inter-SemiBold", Helvetica, serif;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 96px;
+  text-align: center;
+  letter-spacing: -0.96px;
+  line-height: 144px;
+  white-space: nowrap;
+}
+
+.auth .re-2 {
+  position: absolute;
+  height: 36px;
+  top: 384px;
+  left: 0;
+  font-family: "Inter-SemiBold", Helvetica, serif;
+  font-weight: 600;
+  color: #ffffff33;
+  font-size: 24px;
+  text-align: center;
+  letter-spacing: -0.24px;
+  line-height: 36px;
+  white-space: nowrap;
+}
+
+.auth .re-3 {
+  position: absolute;
+  height: 54px;
+  top: 330px;
+  left: 0;
+  font-family: "Inter-SemiBold", Helvetica, serif;
+  font-weight: 600;
+  color: #ffffff66;
+  font-size: 36px;
+  text-align: center;
+  letter-spacing: -0.36px;
+  line-height: 54px;
+  white-space: nowrap;
+}
+
+.auth .re-4 {
+  position: absolute;
+  height: 72px;
+  top: 258px;
+  left: 0;
+  font-family: "Inter-SemiBold", Helvetica, serif;
+  font-weight: 600;
+  color: #ffffff99;
+  font-size: 48px;
+  text-align: center;
+  letter-spacing: -0.48px;
+  line-height: 72px;
+  white-space: nowrap;
+}
+
+.auth .line {
+  width: 865px;
+  top: 23px;
+  left: 503px;
+  position: absolute;
+  height: 2px;
+}
+
+.auth .img {
+  width: 632px;
+  top: 48px;
+  left: 736px;
+  position: absolute;
+  height: 2px;
+}
+
+.auth .line-2 {
+  width: 413px;
+  top: 71px;
+  left: 955px;
+  position: absolute;
+  height: 2px;
+}
+
+:root {
+  --body-text-font-family: "Inter", Helvetica;
+  --body-text-font-weight: 500;
+  --body-text-font-size: 20px;
+  --body-text-letter-spacing: 0px;
+  --body-text-line-height: 150%;
+  --body-text-font-style: normal;
+  --small-text-font-family: "Inter", Helvetica;
+  --small-text-font-weight: 500;
+  --small-text-font-size: 16px;
+  --small-text-letter-spacing: 0px;
+  --small-text-line-height: 150%;
+  --small-text-font-style: normal;
+  --system-colors-colors-indigo: rgba(88, 86, 214, 1);
+}
+
+/*
+
+To enable a theme in your HTML, simply add one of the following data attributes to an HTML element, like so:
+
+<body data-system-colors-mode="light">
+    <!-- the rest of your content -->
+</body>
+
+You can apply the theme on any DOM node, not just the `body`
+
+*/
+
+[data-system-colors-mode="light"] {
+  --system-colors-colors-indigo: rgba(88, 86, 214, 1);
+}
+
+[data-system-colors-mode="dark"] {
+  --system-colors-colors-indigo: rgba(94, 92, 230, 1);
+}
+
+[data-system-colors-mode="dark-elevated"] {
+  --system-colors-colors-indigo: rgba(94, 92, 230, 1);
+}
+
+[data-system-colors-mode="IC-light"] {
+  --system-colors-colors-indigo: rgba(54, 52, 163, 1);
+}
+
+[data-system-colors-mode="IC-dark"] {
+  --system-colors-colors-indigo: rgba(125, 122, 255, 1);
+}
+
+[data-system-colors-mode="IC-dark-elevated"] {
+  --system-colors-colors-indigo: rgba(125, 122, 255, 1);
+}
