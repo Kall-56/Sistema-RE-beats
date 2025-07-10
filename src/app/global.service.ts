@@ -164,6 +164,15 @@ export class GlobalService {
     return this.http.post(this.backUrl+'/AgregarCancionAPlaylist', null,{params});
   }
 
+  quitarCancionAPlaylist(idUsuario: number, idPlaylist: number, idCancion: number): Observable<any> {
+    const params = new HttpParams()
+      .set('idUsuario', idUsuario)
+      .set('idPlaylist', idPlaylist)
+      .set('idCancion', idCancion);
+
+    return this.http.post(this.backUrl+'/EliminarCancionDePlaylist', null,{params});
+  }
+
   eliminarComentario(idComentario: number, idUsuario: number): Observable<any> {
     const params = new HttpParams()
       .set('idComentario', idComentario)
@@ -220,5 +229,13 @@ export class GlobalService {
       .set('idAmigo', idAmigo);
 
     return this.http.post(this.backUrl+'/EliminarAmigo', null,{params});
+  }
+
+  eliminarPerfil(idUsuario: number, idPerfil: number): Observable<any> {
+    const params = new HttpParams()
+      .set('idUsuario', idUsuario)
+      .set('idPerfil', idPerfil);
+
+    return this.http.post(this.backUrl+'/EliminarPerfil', null,{params});
   }
 }

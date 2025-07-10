@@ -28,16 +28,17 @@ export class RegistrationComponent {
         {
           next: response => {
             console.log(response);
+            window.alert(response.mensaje);
             this.globalService.AppRouter.navigate(['/']).catch(error => {
               console.error('Error de navegación:', error);
             });
           },
-          error: error => console.error('[Error]:', error)
+          error: error => {
+            console.error('[Error]:', error);
+            window.alert(error.message);
+          }
         }
       );
-      setTimeout(() => {
-
-      },1000);
     }
   }
 }

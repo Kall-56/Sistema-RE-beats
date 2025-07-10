@@ -9,7 +9,7 @@
     </div>
     <div *ngIf="idPerfil === user?.id">
       <button (click)="editingPerfil = true">Editar Perfil</button>
-      <button>Eliminar Perfil</button>
+      <button (click)="eliminarPerfil()">Eliminar Perfil</button>
     </div>
     <div *ngIf="editingPerfil">
       <form (ngSubmit)="editarNombre()">

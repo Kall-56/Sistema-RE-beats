@@ -39,6 +39,7 @@ export class PerfilViewComponent implements OnInit{
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.idPerfil = id;
     this.user = this.authService.getUser();
+    window.alert(this.user.amigos);
     this.globalService.getObject<Usuario>(id,'/MostrarUsuario').subscribe(usuario => {
       this.nombre = usuario.nombre;
       this.globalService.getAmigos(usuario.amigos).subscribe(amigos => {
@@ -56,6 +57,7 @@ export class PerfilViewComponent implements OnInit{
     this.globalService.crearPlaylist(this.user.id,this.nuevaPlaylist).subscribe({
       next: response => {
         console.log(response);
+        window.alert(response.mensaje);
         window.location.reload();
       },
       error: err => console.error(err)
@@ -68,15 +70,31 @@ export class PerfilViewComponent implements OnInit{
       this.editingPerfil = false;
       this.user.nombre = this.nuevoNombre;
       this.authService.setUser(this.user);
+      window.alert(response.mensaje);
       window.location.reload();
     });
+  }
+
+  eliminarPerfil() {
+    const confirmado = window.confirm('¿Desea ELIMINAR su perfil? (Esta accion es irreversible)');
+    if (confirmado) {
+      this.globalService.eliminarPerfil(this.user.id,this.idPerfil).subscribe(response => {
+        console.log(response);
+        console.log('Elemento eliminado');
+        this.globalService.AppRouter.navigate(['']);
+      })
+    } else {
+      console.log('Eliminación cancelada');
+    }
   }
 
   agregarAmigo() {
     this.globalService.agregarAmigo(this.user.id,this.idPerfil).subscribe(response => {
       console.log(response);
       this.user.amigos.push(this.idPerfil);
+      this.authService.clearUser();
       this.authService.setUser(this.user);
+      window.alert(response.mensaje);
     });
   }
 
@@ -84,8 +102,9 @@ export class PerfilViewComponent implements OnInit{
     this.globalService.quitarAmigo(this.user.id,this.idPerfil).subscribe(response => {
       console.log(response);
       this.user.amigos = this.user.amigos.filter(id => id !== this.idPerfil);
+      this.authService.clearUser();
       this.authService.setUser(this.user);
-      console.log(this.user.amigos);
+      window.alert(response.mensaje);
     });
   }
 }

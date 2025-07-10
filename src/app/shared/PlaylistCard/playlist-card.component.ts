@@ -33,8 +33,12 @@ export class PlaylistCardComponent implements OnInit{
   agregarPlaylist() {
     this.globalService.agregarPlaylist(this.user.id,this.playlist.id).subscribe(response => {
       console.log(response);
+      console.log(this.user);
       this.user.playlists.push(this.playlist.id);
+      this.authService.clearUser();
       this.authService.setUser(this.user);
+      console.log(this.user);
+      window.alert(response.mensaje);
     });
   }
 
@@ -42,7 +46,12 @@ export class PlaylistCardComponent implements OnInit{
     this.globalService.quitarPlaylist(this.user.id,this.playlist.id).subscribe(response => {
       console.log(response);
       this.user.playlists.filter(id => id === this.playlist.id);
+      console.log(this.user);
+      this.authService.clearUser();
       this.authService.setUser(this.user);
+      console.log(this.user);
+      window.alert(response.mensaje);
+      window.location.reload();
     });
   }
 
