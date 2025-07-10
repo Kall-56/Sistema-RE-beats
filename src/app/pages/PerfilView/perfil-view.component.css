@@ -76,10 +76,10 @@ h3 {
 }
 
 #label-playlist {
-  font-size: 1.2em;
+  font-size: 1rem;
   margin-bottom: 5px;
-  font-family: "Arial Rounded MT Bold", sans-serif;
-  color: #85a072;
+  font-family: "Inter-SemiBold", Helvetica, serif;
+  color: #6d6e6c;
   margin-right: 1rem;
 }
 
@@ -98,6 +98,7 @@ h3 {
   flex: 1 1 auto;
   min-width: 200px;
   max-width: 600px;
+
 }
 
 .playlist-form button {
@@ -119,10 +120,10 @@ h3 {
 }
 
 #nombreNuevo{
-  font-size: 1.2em;
+  font-size: 1em;
   margin-bottom: 5px;
   font-family: "Arial Rounded MT Bold", sans-serif;
-  color: #85a072;
+  color: #6d6e6c;
   margin-right: 1rem;
 }
 
