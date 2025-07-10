@@ -41,6 +41,19 @@ h3 {
   margin: 1rem 3rem;
 }
 
+.amigo a {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.amigo a:hover {
+  opacity: 0.8;
+}
+
 .amigo i {
   color: white;
   font-family: "Inter-SemiBold", Helvetica, serif;
