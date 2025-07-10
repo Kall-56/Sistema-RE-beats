@@ -15,7 +15,7 @@ import {AuthenticationService} from '../../authentication.service';
     NgForOf,
     FormsModule,
     NgIf,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './perfil-view.component.html',
   styleUrl: './perfil-view.component.css'
@@ -39,7 +39,6 @@ export class PerfilViewComponent implements OnInit{
     const id = Number(this.route.snapshot.paramMap.get('id'));
     this.idPerfil = id;
     this.user = this.authService.getUser();
-    window.alert(this.user.amigos);
     this.globalService.getObject<Usuario>(id,'/MostrarUsuario').subscribe(usuario => {
       this.nombre = usuario.nombre;
       this.globalService.getAmigos(usuario.amigos).subscribe(amigos => {

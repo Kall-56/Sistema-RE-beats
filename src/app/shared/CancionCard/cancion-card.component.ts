@@ -28,4 +28,8 @@ export class CancionCardComponent {
   mostrarComponenteAgregarCancion() {
     this.mostrarAgregarCancion = !this.mostrarAgregarCancion;
   }
+
+  quitarDePlaylist() {
+
+  }
 }

@@ -47,7 +47,7 @@ export class CrearCancionComponent implements OnInit, OnDestroy{
       const fecha: string = this.form.value.fecha.toString();
       const imagen = this.selectedImageFile!.toString();
       const links: string = this.form.value.links;
-      this.globalService.registrarCancion(this.User.id,titulo,autor,fecha,imagen).subscribe({
+      this.globalService.registrarCancion(this.User.id,titulo,autor,fecha,imagen,links).subscribe({
         next: response => {
           console.log(response);
           this.globalService.AppRouter.navigate(['/home/catalogoCanciones']).catch(error =>

@@ -2,7 +2,7 @@
   <div class="outer-card">
     <div class="card">
       <div class="card-img">
-        <img class="img" [src]="`http://localhost:8080${cancion.imagen}`" alt="imagen cancion"/>
+        <img class="img" [src]="`${cancion.imagen}`" alt="imagen cancion"/>
       </div>
       <h2>{{cancion.titulo}}</h2>
     </div>
@@ -10,4 +10,4 @@
 </a>
 <button (click)="mostrarComponenteAgregarCancion()">Agregar a playlist</button>
 <app-AgregarCancion *ngIf="mostrarAgregarCancion" [cancion]="cancion"></app-AgregarCancion>
-<button (click)="mostrarComponenteAgregarCancion()">Agregar a playlist</button>
+<!--<button (click)="quitarDePlaylist()">QuitarDePlaylist</button>-->

@@ -106,13 +106,14 @@ export class GlobalService {
     return this.http.get<Playlist[]>(this.backUrl+'/MostrarTodasPlaylists');
   }
 
-  registrarCancion(idUsuario: number, titulo: string, autor: string, fecha: string, imagen: string): Observable<any> {
+  registrarCancion(idUsuario: number, titulo: string, autor: string, fecha: string, imagen: string, links: string): Observable<any> {
     const params = new HttpParams()
       .set('idUsuario', idUsuario)
       .set('titulo', titulo)
       .set('autor', autor)
       .set('fecha', fecha)
-      .set('imagen', imagen);
+      .set('imagen', imagen)
+      .set('links' , links);
 
     return this.http.post(this.backUrl+'/CrearCancion', null,{params});
   }
