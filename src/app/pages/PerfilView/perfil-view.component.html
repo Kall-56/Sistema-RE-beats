@@ -30,7 +30,7 @@
   <h2 id="friends">Amigos</h2>
   <div class="amigos-list">
     <div class="amigo" *ngFor="let amigo of amigos">
-      <a [routerLink]="['/home/PerfilView', amigo.id]">
+      <a (click)="navegarAperfil(amigo.id, $event)" style="cursor: pointer;">
         <div><i>{{amigo.nombre.charAt(0)}}</i></div>
         <i>{{amigo.nombre}}</i>
       </a>
