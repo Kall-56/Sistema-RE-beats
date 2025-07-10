@@ -29,17 +29,15 @@
   </div>
   <h2 id="friends">Amigos</h2>
   <div class="amigos-list">
-    <div class="amigo" *ngFor="let amigo of amigos">
-      <a (click)="verperfil(amigo)">
-        <div><i>{{amigo.nombre.charAt(0)}}</i></div>
-        <i>{{amigo.nombre}}</i>
-      </a>
-    </div>
+    <a class="amigo" *ngFor="let amigo of amigos" [routerLink]="['/home/PerfilView', amigo.id]">
+      <div><i>{{amigo.nombre.charAt(0)}}</i></div>
+      <i>{{amigo.nombre}}</i>
+    </a>
   </div>
   <h2 id="my-playlists">Playlists</h2>
   <div *ngIf="idPerfil === user?.id">
-    <form (ngSubmit)="crearPlaylist()">
-      <label id="label-playlist" for="comentario">Crear Playlist:</label>
+    <div class="playlist-label">Crear Playlist:</div>
+    <form class="playlist-form" (ngSubmit)="crearPlaylist()">
       <textarea
         id="nombrePlaylist"
         name="nombrePlaylist"

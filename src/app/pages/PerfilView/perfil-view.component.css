@@ -1,3 +1,8 @@
+*{
+  color: white;
+  font-family: "Inter-SemiBold", Helvetica, serif;
+}
+
 .main-perfil {
   display: flex;
   flex-direction: column;
@@ -35,10 +40,13 @@ h3 {
 }
 
 .amigo {
+  z-index: 10;
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 1rem 3rem;
+  text-decoration: none;
+  color: inherit;
 }
 
 .amigo a {
@@ -99,19 +107,24 @@ h3 {
 .playlist-form {
   display: flex;
   align-items: flex-start;
-  margin-left: 3rem;
+  margin-left: 0; 
   margin-right: 3rem;
   margin-bottom: 1.5rem;
   gap: 1rem;
   width: auto;
-  max-width: calc(100% - 6rem);
+  max-width: calc(100% - 3rem); 
 }
 
 .playlist-form textarea {
-  flex: 1 1 auto;
-  min-width: 200px;
-  max-width: 600px;
-
+  color: black;           
+  background: #fff;         
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  font-size: 1rem;
+  width: 100%;               
+  box-sizing: border-box;
+  margin-bottom: 10px;
 }
 
 .playlist-form button {
