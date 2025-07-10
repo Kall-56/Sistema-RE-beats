@@ -23,12 +23,14 @@ export class LogInComponent {
                 next: response => {
                   console.log(response);
                   this.logInService.setUser(response);
-
                   this.globalService.AppRouter.navigate(['/home']).catch(error => {
                     console.error('Error de navegación:', error);
                   });
                 },
-                error: error => console.error('Error:', error)
+                error: error => {
+                  console.error('Error:', error);
+                  window.alert(error.error.error);
+                }
               }
             );
         }
