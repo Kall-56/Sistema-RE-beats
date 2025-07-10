@@ -107,4 +107,9 @@ export class PerfilViewComponent implements OnInit{
       window.alert(response.mensaje);
     });
   }
+
+  verperfil(amigo: Usuario) {
+    this.globalService.AppRouter.navigate(['/home/PerfilView', amigo.id]);
+    window.location.reload();
+  }
 }
