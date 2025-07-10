@@ -1,17 +1,21 @@
 <h1 id="playlist-title">{{ playlist?.titulo }}</h1>
-<form *ngIf="user?.id === playlist?.idPropietario" (ngSubmit)="editarNombrePlaylist()">
-  <label for="comentario">Editar Titulo:</label>
-  <textarea
-    id="nombrePlaylist"
-    name="nombrePlaylist"
-    rows="1"
-    [(ngModel)]="nuevaPlaylist"
-    placeholder="Escribe el nombre de la Playlist aquí..."
-    required
-  ></textarea>
-  <button type="submit" [disabled]="!nuevaPlaylist">Enviar</button>
-</form>
-<a [routerLink]="['/home/PerfilView', playlist.idPropietario]">>{{playlist.propietario}}</a>
+<a class="autor-link" [routerLink]="['/home/PerfilView', playlist.idPropietario]">por {{playlist.propietario}}</a>
+<div class="editing">
+  <form *ngIf="user?.id === playlist?.idPropietario" (ngSubmit)="editarNombrePlaylist()">
+    <label for="comentario">Editar Titulo:</label>
+    <div class="input-row">
+      <textarea
+        id="nombrePlaylist"
+        name="nombrePlaylist"
+        rows="1"
+        [(ngModel)]="nuevaPlaylist"
+        placeholder="Escribe el nombre de la Playlist aquí..."
+        required
+      ></textarea>
+      <button type="submit" [disabled]="!nuevaPlaylist">Enviar</button>
+    </div>
+  </form>
+</div>
 <div class="song-list">
   <app-cancion *ngFor="let cancion of canciones" [cancion]="cancion"></app-cancion>
 </div>

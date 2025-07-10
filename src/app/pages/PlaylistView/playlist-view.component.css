@@ -1,9 +1,14 @@
+*{
+    color: white;
+    font-family: "Inter-SemiBold", Helvetica, serif;
+}
+
 h1 {
   margin-left: 2rem;
   margin-top: 1rem;
   color: #fff;
   font-weight: 900;
-  font-size: 24px;
+  font-size: 48px; /* Aumentado */
 }
 
 .song-list {
@@ -12,4 +17,77 @@ h1 {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
   overflow-x: hidden;
+}
+
+.autor-link {
+  display: block;
+  margin-left: 2rem;
+  margin-bottom: 1.5rem;
+  color: #0084ff;
+  font-size: 32px; /* Aumentado */
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.editing {
+  max-width: 500px;
+  margin-left: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+.editing button[type="submit"] {
+    size: 15%;
+    align-self: flex-end;      
+    margin-top: 10px;
+}
+
+.editing label {
+  display: block;
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.editing textarea {
+  color: black;
+  background: #fff;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  padding: 8px;
+  font-size: 1.1rem;
+  width: 90%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  resize: none;
+}
+
+.input-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.input-row textarea {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.input-row button[type="submit"] {
+  /* Quita estilos personalizados para aspecto default */
+  all: unset;
+  display: inline-block;
+  padding: 6px 16px;
+  margin-left: 8px;
+  background: ButtonFace;
+  color: ButtonText;
+  border: 1px solid ButtonShadow;
+  border-radius: 4px;
+  cursor: pointer;
+  font: inherit;
+  transition: background 0.2s;
+}
+.input-row button[type="submit"]:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
